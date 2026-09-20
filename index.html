@@ -865,8 +865,8 @@ html,body{
   .code-modal-box textarea{font-size:11px;min-height:200px;}
   .code-modal-head{font-size:14px;padding:10px 14px;}
 }
-</style>
-<body>
+   </style>
+   <body>
 
 <!-- ═══ STARFIELD BACKGROUND ═══ -->
 <div id="stars"></div>
@@ -877,7 +877,7 @@ html,body{
 <div id="auth">
   <div class="auth-box">
     <div class="auth-logo glitch" data-text="VarCommandTerm">VarCommandTerm</div>
-    <div class="auth-sub">▸ NEO-BRUTALIST COMMAND SYSTEM v1.2 ◂</div>
+    <div class="auth-sub">▸ NEO-BRUTALIST COMMAND SYSTEM v1.2.1 ◂</div>
 
     <div class="auth-tabs">
       <button id="tabLogin" class="active" onclick="switchAuth('login')">LOGIN</button>
@@ -928,7 +928,7 @@ html,body{
 
     <div class="dash-card">
       <div class="dc-title">🌐 INFO WEB</div>
-      <div class="dc-row"><span>Versi</span><b>v1.2</b></div>
+      <div class="dc-row"><span>Versi</span><b>v1.2.1</b></div>
       <div class="dc-row"><span>Tema</span><b>Neo-Brutalist</b></div>
       <div class="dc-row"><span>Backend</span><b>Firebase RTDB</b></div>
       <div class="dc-row"><span>Pembuat</span><b>Varoo</b></div>
@@ -979,7 +979,7 @@ html,body{
   </div>
 
   <div class="dash-footer">
-    ⚡ VarCommandTerm v1.2 — by Varoo — Powered by Firebase ⚡
+    ⚡ VarCommandTerm v1.2.1 — by Varoo — Powered by Firebase ⚡
   </div>
 </div>
 
@@ -1068,7 +1068,7 @@ html,body{
 </div>
 
 <!-- ══════════════════════════════════════════════
-     CODE EDITOR MODAL (Vaddcommand)
+     CODE EDITOR MODAL
      ══════════════════════════════════════════════ -->
 <div id="codeModal">
   <div class="code-modal-box">
@@ -1114,7 +1114,7 @@ const db = firebase.database();
    GLOBAL STATE
    ══════════════════════════════════════════════ */
 const APP = {
-  version: "1.2",
+  version: "1.2.1",
   name: "VarCommandTerm",
   startTime: Date.now(),
   user: null,
@@ -1126,11 +1126,11 @@ const APP = {
   matrixInterval: null,
   gifts: [],
   prefix: "V",
-  customCmds: {},       // { cmdName: { code: "function body string", at, by } }
-  compiledCmds: {},     // { cmdName: fn } — hasil eval
+  customCmds: {},
+  compiledCmds: {},
   clockTimer: null,
   statTimer: null,
-  pasteMode: null,      // { cmdName, buffer: [] }
+  pasteMode: null,
 };
 
 /* ══════════════════════════════════════════════
@@ -1517,7 +1517,7 @@ function bootSequence(){
   return new Promise(function(resolve){
     const lines = [
       "╔══════════════════════════════════════════╗",
-      "║   VarCommandTerm v1.2 — BOOT SEQUENCE    ║",
+      "║   VarCommandTerm v1.2.1 — BOOT SEQUENCE  ║",
       "╚══════════════════════════════════════════╝",
       "",
       "▸ Memuat core system...",
@@ -1576,7 +1576,6 @@ function submitCmd(){
   if(!trimmed && !APP.pasteMode) return;
   inputEl.value = '';
 
-  // PASTE MODE — kumpulin baris sampai ketik "END"
   if(APP.pasteMode){
     if(trimmed === 'END' || trimmed === 'end'){
       finishPasteMode();
@@ -1612,10 +1611,8 @@ function handleCommand(raw){
   const args = parts.slice(1);
   const argsStr = raw.trim().slice(cmd.length).trim();
 
-  // cek built-in command dulu
   let C = COMMANDS[cmd];
   if(!C){
-    // cek custom command
     if(APP.compiledCmds[cmd]){
       try{
         APP.compiledCmds[cmd](args, argsStr);
@@ -1671,6 +1668,48 @@ function closeCodeModal(){
   currentEditCmd = null;
 }
 
+/* ══════════════════════════════════════════════
+   ✅ COMPILE HELPER — handle function statement
+   ══════════════════════════════════════════════ */
+function compileCustomFn(code){
+  let body = code.trim();
+
+  // 1) function(args, argsStr) { ... }  → extract isi body
+  if(/^function\s*\(/.test(body)){
+    const firstBrace = body.indexOf('{');
+    const lastBrace = body.lastIndexOf('}');
+    if(firstBrace === -1 || lastBrace <= firstBrace){
+      throw new Error("Format function tidak lengkap (kurang kurung kurawal {})");
+    }
+    const inner = body.substring(firstBrace+1, lastBrace);
+    return new Function('args', 'argsStr', inner);
+  }
+
+  // 2) arrow function: (args, argsStr) => { ... }  atau  args => ...
+  if(/=>/.test(body)){
+    return new Function('args', 'argsStr', 'return (' + body + ')(args, argsStr);');
+  }
+
+  // 3) fallback: anggap body langsung (statement/expression)
+  return new Function('args', 'argsStr', body);
+}
+
+function tryCompile(name, code){
+  try{
+    APP.compiledCmds[name] = compileCustomFn(code);
+    return true;
+  }catch(e){
+    console.warn("Compile error " + name + ":", e.message);
+    APP.compiledCmds[name] = function(){
+      addBubble("❌ Command " + name + " error compile: " + e.message, "error");
+    };
+    return false;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   ✅ SAVE CUSTOM COMMAND — pakai compileCustomFn
+   ══════════════════════════════════════════════ */
 function saveCustomCommand(){
   if(!currentEditCmd) return;
   const code = $('codeEditor').value.trim();
@@ -1678,8 +1717,7 @@ function saveCustomCommand(){
 
   // validasi compile dulu
   try{
-    const fn = new Function('args', 'argsStr', code + '\n//# sourceURL=' + currentEditCmd);
-    // test panggil kosong? tidak, biar user sendiri yang test.
+    compileCustomFn(code);
   }catch(e){
     toast("❌ Syntax error: " + e.message, "err");
     return;
@@ -1722,41 +1760,7 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 
 /* ══════════════════════════════════════════════
-   COMPILE CUSTOM COMMAND
-   ══════════════════════════════════════════════ */
-function tryCompile(name, code){
-  try{
-    // kalau user ketik function(...) {...} — ambil bodynya
-    let body = code.trim();
-    // kalau diawali "function" → bikin wrapper
-    if(/^function\s*\(/.test(body)){
-      // extract body (isi dalam kurung kurawal terluar)
-      const firstBrace = body.indexOf('{');
-      const lastBrace = body.lastIndexOf('}');
-      if(firstBrace > -1 && lastBrace > firstBrace){
-        const params = body.substring(body.indexOf('(')+1, body.indexOf(')'));
-        const inner = body.substring(firstBrace+1, lastBrace);
-        // bikin fn dengan param dinamis (args, argsStr)
-        const fn = new Function('args', 'argsStr', inner);
-        APP.compiledCmds[name] = fn;
-        return true;
-      }
-    }
-    // kalau arrow / langsung isi → anggap body
-    const fn = new Function('args', 'argsStr', body);
-    APP.compiledCmds[name] = fn;
-    return true;
-  }catch(e){
-    console.warn("Compile error " + name + ":", e.message);
-    APP.compiledCmds[name] = function(){
-      addBubble("❌ Command " + name + " error compile: " + e.message, "error");
-    };
-    return false;
-  }
-}
-
-/* ══════════════════════════════════════════════
-   PASTE MODE (legacy — tidak dipakai karena sekarang pakai modal)
+   PASTE MODE (legacy)
    ══════════════════════════════════════════════ */
 function startPasteMode(cmdName){
   APP.pasteMode = { cmdName: cmdName, buffer: [] };
@@ -1781,7 +1785,7 @@ function finishPasteMode(){
   }
 
   try{
-    new Function('args', 'argsStr', code);
+    compileCustomFn(code);
   }catch(e){
     addBubble("❌ Syntax error: " + e.message, "error");
     return;
@@ -1939,7 +1943,7 @@ const COMMANDS = {
     });
   }},
 
-  /* ═══ Vdevgift & Vinfogift ═══ */
+  /* ═══ GIFT ═══ */
   Vdevgift: { adminOnly: true, run: function(args, argsStr){
     if(!argsStr){
       addBubble(
@@ -2216,7 +2220,7 @@ const COMMANDS = {
     }).then(function(){ addBubble("🎁 Private Server → @" + user, "success"); });
   }},
 
-  /* ═══ CUSTOM COMMAND MANAGER (3+3) ═══ */
+  /* ═══ CUSTOM COMMAND MANAGER ═══ */
   Vaddcommand: { adminOnly: true, run: function(args, argsStr){
     if(!argsStr){
       addBubble(
@@ -2239,7 +2243,6 @@ const COMMANDS = {
     }
     let name = args[0];
     if(!name){ addBubble("❌ Kasih nama command!", "error"); return; }
-    // auto-prepend prefix kalau belum
     if(name.indexOf(APP.prefix) !== 0){ name = APP.prefix + name; }
     if(COMMANDS[name]){ addBubble("❌ Nama command sudah dipakai built-in.", "error"); return; }
     if(APP.customCmds[name]){
@@ -2641,7 +2644,6 @@ function reloadFromPanic(){
       });
       console.log("✅ Admin vardev dibuat.");
     }
-    // init prefix kalau belum ada
     const pSnap = await db.ref('settings/prefix').once('value');
     if(!pSnap.exists()){
       await db.ref('settings/prefix').set("V");
@@ -2660,7 +2662,7 @@ document.addEventListener('click', function(e){
   }
 });
 
-console.log("✅ VarCommandTerm v1.2 loaded — " + Object.keys(COMMANDS).length + " built-in commands + custom command system + prefix manager.");
+console.log("✅ VarCommandTerm v1.2.1 loaded — " + Object.keys(COMMANDS).length + " built-in + custom command system + prefix manager.");
 </script>
 </body>
-       </html>
+                                                          </html>
