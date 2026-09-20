@@ -4,13 +4,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#0a0a0a" />
-<title>VarCommandTerm v2.0</title>
+<title>VarCommandTerm v2.1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Archivo+Black&display=swap" rel="stylesheet">
 <style>
 /* ══════════════════════════════════════════════
-   VARCOMMANDTERM v2.0 — NEO-BRUTALIST
+   VARCOMMANDTERM v2.1 — NEO-BRUTALIST
    ══════════════════════════════════════════════ */
 
 :root{
@@ -40,7 +40,6 @@ html,body{
   overscroll-behavior:none;
 }
 
-/* ═══ STARFIELD BACKGROUND ═══ */
 #stars{
   position:fixed;
   inset:0;
@@ -83,7 +82,6 @@ html,body{
   100%{opacity:1;}
 }
 
-/* ═══ APP SHELL ═══ */
 #app{
   position:relative;
   height:100dvh;
@@ -95,7 +93,6 @@ html,body{
 }
 #app.active{display:flex;}
 
-/* ═══ HEADER ═══ */
 .header{
   background:var(--black);
   color:var(--yellow);
@@ -180,7 +177,6 @@ html,body{
 .btn-back.show{display:inline-block;}
 .btn-back:hover{transform:translate(2px,2px);}
 
-/* ═══ TOPBAR INFO ═══ */
 .topbar{
   background:var(--white);
   color:var(--black);
@@ -212,7 +208,6 @@ html,body{
 }
 .topbar .gift-badge.show{display:inline-block;animation:pulse 1s infinite;}
 
-/* ═══ CHAT LOG ═══ */
 .chatlog{
   flex:1 1 0;
   min-height:0;
@@ -231,7 +226,6 @@ html,body{
 .chatlog::-webkit-scrollbar-track{background:transparent;}
 .chatlog::-webkit-scrollbar-thumb{background:var(--yellow);border:2px solid var(--black);}
 
-/* ═══ BUBBLES ═══ */
 .bubble{
   max-width:82%;
   padding:8px 12px;
@@ -249,57 +243,26 @@ html,body{
   from{transform:translate(-3px,3px);opacity:0;}
   to{transform:translate(0,0);opacity:1;}
 }
-.bubble.user{
-  align-self:flex-end;
-  background:var(--cyan);
-  color:var(--black);
-  font-weight:700;
-}
-.bubble.sys{
-  align-self:flex-start;
-  background:var(--white);
-  color:var(--black);
-}
+.bubble.user{align-self:flex-end;background:var(--cyan);color:var(--black);font-weight:700;}
+.bubble.sys{align-self:flex-start;background:var(--white);color:var(--black);}
 .bubble.sys.error{background:var(--red);color:var(--white);}
 .bubble.sys.success{background:var(--yellow);color:var(--black);}
 .bubble.sys.info{background:var(--pink);color:var(--black);}
 .bubble.sys.gift{background:var(--purple);color:var(--white);}
-.bubble.sys.code{
-  background:var(--black);
-  color:#00ff00;
-  border-color:var(--green);
-  font-size:11px;
-  font-family:var(--font-mono);
-}
-.bubble.sys.custom{
-  background:var(--purple);
-  color:var(--white);
-  border-color:var(--black);
-}
-.bubble .meta{
-  display:block;
-  font-size:8px;
-  opacity:.6;
-  margin-top:4px;
-  letter-spacing:.3px;
-  font-weight:800;
-}
+.bubble.sys.code{background:var(--black);color:#00ff00;border-color:var(--green);font-size:11px;}
+.bubble.sys.custom{background:var(--purple);color:var(--white);border-color:var(--black);}
+.bubble .meta{display:block;font-size:8px;opacity:.6;margin-top:4px;letter-spacing:.3px;font-weight:800;}
 .bubble.ascii{
-  font-size:10px;
-  line-height:1.2;
-  background:var(--black);
-  color:var(--yellow);
-  font-weight:700;
-  border-color:var(--yellow);
-  max-width:100%;
+  font-size:10px;line-height:1.2;
+  background:var(--black);color:var(--yellow);
+  font-weight:700;border-color:var(--yellow);max-width:100%;
 }
 
-/* ═══ INPUT BAR ═══ */
 .inputbar{
   border-top:var(--border);
   background:var(--white);
   color:var(--black);
-  padding:10px 10px;
+  padding:10px;
   display:flex;
   gap:8px;
   align-items:stretch;
@@ -317,49 +280,36 @@ html,body{
   border:3px solid var(--black);
   flex-shrink:0;
   min-width:44px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  display:flex;align-items:center;justify-content:center;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 .inputbar input{
-  flex:1;
-  min-width:0;
+  flex:1;min-width:0;
   padding:10px 12px;
   font-family:var(--font-mono);
-  font-size:13px;
-  font-weight:700;
+  font-size:13px;font-weight:700;
   border:3px solid var(--black);
-  background:var(--yellow);
-  color:var(--black);
-  outline:none;
-  border-radius:0;
+  background:var(--yellow);color:var(--black);
+  outline:none;border-radius:0;
 }
 .inputbar input:focus{background:var(--white);}
 .inputbar input::placeholder{color:var(--black);opacity:.4;}
 .inputbar button{
   padding:0 16px;
-  background:var(--black);
-  color:var(--yellow);
+  background:var(--black);color:var(--yellow);
   border:3px solid var(--black);
-  font-family:var(--font-display);
-  font-size:15px;
+  font-family:var(--font-display);font-size:15px;
   cursor:pointer;
   box-shadow:3px 3px 0 var(--black);
-  transition:.08s;
-  flex-shrink:0;
+  transition:.08s;flex-shrink:0;
 }
 .inputbar button:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--black);}
 .inputbar button:active{transform:translate(3px,3px);box-shadow:none;}
 
-/* ═══ TYPING INDICATOR ═══ */
 .typing{display:inline-block;color:inherit;}
 .typing::after{content:"▋";animation:blink .7s infinite;}
 @keyframes blink{50%{opacity:0;}}
 
-/* ═══ GLITCH TITLE ═══ */
 .glitch{position:relative;color:var(--yellow);}
 .glitch::before,
 .glitch::after{
@@ -367,16 +317,8 @@ html,body{
   position:absolute;top:0;left:0;width:100%;height:100%;
   pointer-events:none;
 }
-.glitch::before{
-  color:var(--cyan);
-  animation:glitch1 2.5s infinite;
-  clip-path:polygon(0 0,100% 0,100% 45%,0 45%);
-}
-.glitch::after{
-  color:var(--red);
-  animation:glitch2 3s infinite;
-  clip-path:polygon(0 55%,100% 55%,100% 100%,0 100%);
-}
+.glitch::before{color:var(--cyan);animation:glitch1 2.5s infinite;clip-path:polygon(0 0,100% 0,100% 45%,0 45%);}
+.glitch::after{color:var(--red);animation:glitch2 3s infinite;clip-path:polygon(0 55%,100% 55%,100% 100%,0 100%);}
 @keyframes glitch1{
   0%,90%,100%{transform:translate(0);}
   92%{transform:translate(-2px,1px);}
@@ -390,9 +332,6 @@ html,body{
   95%{transform:translate(1px,-2px);}
 }
 
-/* ══════════════════════════════════════════════
-   AUTH OVERLAY
-   ══════════════════════════════════════════════ */
 #auth{
   position:fixed;inset:0;
   background:var(--black);
@@ -403,8 +342,7 @@ html,body{
 #auth.hidden{display:none;}
 .auth-box{
   position:relative;
-  background:var(--white);
-  color:var(--black);
+  background:var(--white);color:var(--black);
   border:var(--border);
   box-shadow:8px 8px 0 var(--yellow);
   padding:24px 20px;
@@ -412,12 +350,9 @@ html,body{
   z-index:1;
 }
 .auth-logo{
-  font-family:var(--font-display);
-  font-size:22px;
-  text-align:center;
-  margin-bottom:4px;
-  letter-spacing:-1px;
-  color:var(--black);
+  font-family:var(--font-display);font-size:22px;
+  text-align:center;margin-bottom:4px;
+  letter-spacing:-1px;color:var(--black);
 }
 .auth-logo.glitch{color:var(--black);}
 .auth-logo.glitch::before{color:var(--red);}
@@ -452,187 +387,102 @@ html,body{
 }
 .auth-form button[type=submit]:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--black);}
 .auth-form button[type=submit]:active{transform:translate(3px,3px);box-shadow:none;}
-.auth-msg{
-  font-size:10px;font-weight:800;text-align:center;
-  min-height:14px;margin-top:6px;letter-spacing:.3px;
-}
+.auth-msg{font-size:10px;font-weight:800;text-align:center;min-height:14px;margin-top:6px;letter-spacing:.3px;}
 .auth-msg.err{color:var(--red);}
 .auth-msg.ok{color:#00a020;}
-.auth-hint{
-  margin-top:16px;padding:8px;
-  border:2px dashed var(--black);
-  font-size:9px;text-align:center;opacity:.7;font-weight:700;
-}
+.auth-hint{margin-top:16px;padding:8px;border:2px dashed var(--black);font-size:9px;text-align:center;opacity:.7;font-weight:700;}
 
-/* ══════════════════════════════════════════════
-   DASHBOARD
-   ══════════════════════════════════════════════ */
 #dashboard{
   position:fixed;inset:0;
-  display:none;
-  flex-direction:column;
-  z-index:50;
-  overflow-y:auto;
-  padding:16px;
-  color:var(--white);
+  display:none;flex-direction:column;
+  z-index:50;overflow-y:auto;
+  padding:16px;color:var(--white);
   padding-bottom:calc(16px + env(safe-area-inset-bottom));
 }
 #dashboard.active{display:flex;}
-
 .dash-header{
-  text-align:center;
-  margin-bottom:16px;
-  padding:18px 12px;
-  border:var(--border);
-  background:var(--black);
+  text-align:center;margin-bottom:16px;padding:18px 12px;
+  border:var(--border);background:var(--black);
   box-shadow:6px 6px 0 var(--yellow);
-  position:relative;
-  z-index:1;
+  position:relative;z-index:1;
 }
 .dash-title{
-  font-family:var(--font-display);
-  font-size:26px;
-  letter-spacing:-1px;
-  color:var(--yellow);
-  margin-bottom:4px;
+  font-family:var(--font-display);font-size:26px;
+  letter-spacing:-1px;color:var(--yellow);margin-bottom:4px;
   word-break:break-word;
 }
-.dash-sub{
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:1.5px;
-  color:var(--white);
-  opacity:.8;
-}
-
+.dash-sub{font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--white);opacity:.8;}
 .dash-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:12px;
-  margin-bottom:16px;
-  position:relative;
-  z-index:1;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:12px;margin-bottom:16px;position:relative;z-index:1;
 }
 .dash-card{
-  background:var(--white);
-  color:var(--black);
-  border:3px solid var(--black);
-  box-shadow:4px 4px 0 var(--black);
-  padding:14px;
-  transition:.1s;
-  min-width:0;
+  background:var(--white);color:var(--black);
+  border:3px solid var(--black);box-shadow:4px 4px 0 var(--black);
+  padding:14px;transition:.1s;min-width:0;
 }
 .dash-card:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--yellow);}
 .dash-card .dc-title{
-  font-family:var(--font-display);
-  font-size:12px;
-  letter-spacing:-.3px;
-  margin-bottom:8px;
-  padding-bottom:5px;
+  font-family:var(--font-display);font-size:12px;
+  letter-spacing:-.3px;margin-bottom:8px;padding-bottom:5px;
   border-bottom:2px solid var(--black);
-  display:flex;
-  align-items:center;
-  gap:4px;
+  display:flex;align-items:center;gap:4px;
 }
 .dash-card .dc-row{
   display:flex;justify-content:space-between;
-  font-size:11px;font-weight:700;
-  padding:3px 0;
-  border-bottom:1px dashed rgba(0,0,0,.15);
-  gap:8px;
+  font-size:11px;font-weight:700;padding:3px 0;
+  border-bottom:1px dashed rgba(0,0,0,.15);gap:8px;
 }
 .dash-card .dc-row:last-child{border-bottom:none;}
 .dash-card .dc-row span{flex-shrink:0;}
 .dash-card .dc-row b{
   background:var(--black);color:var(--yellow);
   padding:1px 5px;font-weight:800;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-  max-width:60%;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:60%;
 }
-.dash-card.highlight{
-  background:var(--yellow);
-  box-shadow:6px 6px 0 var(--black);
-}
-
+.dash-card.highlight{background:var(--yellow);box-shadow:6px 6px 0 var(--black);}
 .dash-actions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  justify-content:center;
-  margin-bottom:16px;
-  position:relative;
-  z-index:1;
+  display:flex;gap:10px;flex-wrap:wrap;justify-content:center;
+  margin-bottom:16px;position:relative;z-index:1;
 }
 .btn-start{
-  background:var(--yellow);
-  color:var(--black);
-  border:3px solid var(--black);
-  padding:14px 22px;
-  font-family:var(--font-display);
-  font-size:15px;
-  letter-spacing:-.3px;
-  cursor:pointer;
-  box-shadow:5px 5px 0 var(--black);
-  transition:.1s;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  flex:1 1 auto;
-  justify-content:center;
-  max-width:100%;
+  background:var(--yellow);color:var(--black);
+  border:3px solid var(--black);padding:14px 22px;
+  font-family:var(--font-display);font-size:15px;letter-spacing:-.3px;
+  cursor:pointer;box-shadow:5px 5px 0 var(--black);
+  transition:.1s;display:flex;align-items:center;gap:8px;
+  flex:1 1 auto;justify-content:center;max-width:100%;
 }
 .btn-start:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--black);}
 .btn-start:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--black);}
 .btn-start .arrow{font-size:18px;}
-
 .btn-dash{
-  background:var(--white);
-  color:var(--black);
-  border:3px solid var(--black);
-  padding:10px 16px;
-  font-family:var(--font-display);
-  font-size:12px;
-  cursor:pointer;
-  box-shadow:3px 3px 0 var(--black);
-  transition:.1s;
-  display:flex;
-  align-items:center;
-  gap:6px;
+  background:var(--white);color:var(--black);
+  border:3px solid var(--black);padding:10px 16px;
+  font-family:var(--font-display);font-size:12px;
+  cursor:pointer;box-shadow:3px 3px 0 var(--black);
+  transition:.1s;display:flex;align-items:center;gap:6px;
 }
 .btn-dash:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--black);}
 .btn-dash:active{transform:translate(3px,3px);box-shadow:none;}
-
 .dash-footer{
-  text-align:center;
-  font-size:9px;
-  font-weight:700;
-  opacity:.6;
-  padding:8px;
-  position:relative;
-  z-index:1;
-  letter-spacing:.5px;
+  text-align:center;font-size:9px;font-weight:700;
+  opacity:.6;padding:8px;position:relative;z-index:1;letter-spacing:.5px;
 }
 
-/* ═══ CHAT MODE ═══ */
 #app.chatmode .header{background:var(--cyan);color:var(--black);}
 #app.chatmode .header-brand .dot{background:var(--black);}
 #app.chatmode .chatlog{background:rgba(0,0,0,.6);}
 
-/* ═══ VIRUS OVERLAY ═══ */
 #virus{
-  position:fixed;inset:0;
-  background:var(--black);
-  color:#00ff00;z-index:9999;
-  display:none;padding:16px;
-  font-family:var(--font-mono);font-size:12px;overflow:hidden;
+  position:fixed;inset:0;background:var(--black);
+  color:#00ff00;z-index:9999;display:none;
+  padding:16px;font-family:var(--font-mono);font-size:12px;overflow:hidden;
 }
 #virus.active{display:block;}
 #virus .vhead{
   font-family:var(--font-display);font-size:24px;color:var(--red);
-  text-align:center;margin-bottom:8px;
-  animation:shake .15s infinite;
+  text-align:center;margin-bottom:8px;animation:shake .15s infinite;
 }
 @keyframes shake{
   0%{transform:translate(0,0);}
@@ -643,124 +493,70 @@ html,body{
 }
 #virus .vlog{white-space:pre-wrap;font-size:11px;line-height:1.5;}
 #virus .vtimer{
-  position:absolute;bottom:16px;left:50%;
-  transform:translateX(-50%);
+  position:absolute;bottom:16px;left:50%;transform:translateX(-50%);
   background:var(--red);color:var(--white);
-  padding:8px 18px;font-weight:800;font-size:15px;
-  border:3px solid var(--white);
+  padding:8px 18px;font-weight:800;font-size:15px;border:3px solid var(--white);
 }
 
-/* ═══ PANIC MODE ═══ */
 #panic{
-  position:fixed;inset:0;
-  background:var(--black);color:var(--white);
-  z-index:99999;display:none;
-  align-items:center;justify-content:center;flex-direction:column;
-  padding:16px;text-align:center;
+  position:fixed;inset:0;background:var(--black);color:var(--white);
+  z-index:99999;display:none;align-items:center;justify-content:center;
+  flex-direction:column;padding:16px;text-align:center;
 }
 #panic.active{display:flex;}
-#panic h1{
-  font-family:var(--font-display);font-size:40px;
-  color:var(--red);margin-bottom:16px;
-}
+#panic h1{font-family:var(--font-display);font-size:40px;color:var(--red);margin-bottom:16px;}
 #panic p{font-size:12px;margin-bottom:8px;opacity:.8;}
 #panic small{font-size:10px;opacity:.5;margin-top:24px;}
 
-/* ═══ MATRIX CANVAS ═══ */
-#matrixcanvas{
-  position:fixed;inset:0;z-index:9998;
-  display:none;pointer-events:none;
-}
+#matrixcanvas{position:fixed;inset:0;z-index:9998;display:none;pointer-events:none;}
 #matrixcanvas.active{display:block;}
 
-/* ═══ HACK OVERLAY (update web) ═══ */
 #hack{
-  position:fixed;inset:0;
-  background:#000;
-  z-index:99999;
-  display:none;
-  padding:16px;
-  font-family:var(--font-mono);
-  color:#00ff00;
-  font-size:12px;
-  overflow:hidden;
+  position:fixed;inset:0;background:#000;z-index:99999;
+  display:none;padding:16px;font-family:var(--font-mono);
+  color:#00ff00;font-size:12px;overflow:hidden;
 }
 #hack.active{display:block;}
-#hack .hack-line{
-  white-space:pre-wrap;
-  margin-bottom:3px;
-  animation:flicker .1s infinite;
-}
-@keyframes flicker{
-  0%,100%{opacity:1;}
-  50%{opacity:.7;}
-}
+#hack .hack-line{white-space:pre-wrap;margin-bottom:3px;animation:flicker .1s infinite;}
+@keyframes flicker{0%,100%{opacity:1;}50%{opacity:.7;}}
 #hack .hack-center{
-  position:absolute;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  text-align:center;
-  background:var(--red);
-  color:var(--white);
-  padding:16px 20px;
-  border:4px solid var(--white);
-  font-family:var(--font-display);
-  font-size:18px;
-  display:none;
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  text-align:center;background:var(--red);color:var(--white);
+  padding:16px 20px;border:4px solid var(--white);
+  font-family:var(--font-display);font-size:18px;display:none;
 }
 #hack .hack-center.show{display:block;animation:shake .1s infinite;}
 #hack .hack-center button{
-  margin-top:12px;
-  padding:10px 22px;
-  background:var(--white);
-  color:var(--red);
-  border:3px solid var(--black);
-  font-family:var(--font-display);
-  font-size:14px;
-  cursor:pointer;
-  letter-spacing:1px;
+  margin-top:12px;padding:10px 22px;
+  background:var(--white);color:var(--red);
+  border:3px solid var(--black);font-family:var(--font-display);
+  font-size:14px;cursor:pointer;letter-spacing:1px;
 }
 
-/* ═══ GIFT MODAL ═══ */
 #giftModal{
-  position:fixed;inset:0;
-  background:rgba(0,0,0,.85);
-  z-index:9997;display:none;
-  align-items:center;justify-content:center;padding:16px;
+  position:fixed;inset:0;background:rgba(0,0,0,.85);
+  z-index:9997;display:none;align-items:center;justify-content:center;padding:16px;
 }
 #giftModal.active{display:flex;}
 .gift-modal-box{
   background:var(--white);color:var(--black);
-  border:var(--border);
-  box-shadow:8px 8px 0 var(--yellow);
-  max-width:560px;width:100%;max-height:80vh;
-  overflow-y:auto;padding:18px;
+  border:var(--border);box-shadow:8px 8px 0 var(--yellow);
+  max-width:560px;width:100%;max-height:80vh;overflow-y:auto;padding:18px;
 }
 .gift-modal-box h2{
   font-family:var(--font-display);font-size:18px;
-  margin-bottom:12px;border-bottom:3px solid var(--black);
-  padding-bottom:8px;
+  margin-bottom:12px;border-bottom:3px solid var(--black);padding-bottom:8px;
 }
 .gift-item{
-  border:3px solid var(--black);
-  padding:10px 12px;margin-bottom:10px;
-  background:var(--yellow);
-  box-shadow:3px 3px 0 var(--black);
+  border:3px solid var(--black);padding:10px 12px;margin-bottom:10px;
+  background:var(--yellow);box-shadow:3px 3px 0 var(--black);
 }
-.gift-item .gt{
-  font-family:var(--font-display);
-  font-size:13px;margin-bottom:4px;
-}
+.gift-item .gt{font-family:var(--font-display);font-size:13px;margin-bottom:4px;}
 .gift-item .gtype{
-  display:inline-block;background:var(--black);
-  color:var(--yellow);padding:1px 6px;
-  font-size:9px;font-weight:800;
-  margin-bottom:4px;letter-spacing:.3px;
+  display:inline-block;background:var(--black);color:var(--yellow);
+  padding:1px 6px;font-size:9px;font-weight:800;margin-bottom:4px;letter-spacing:.3px;
 }
-.gift-item .gcontent{
-  font-size:11px;font-weight:700;
-  word-break:break-word;margin:4px 0;
-}
+.gift-item .gcontent{font-size:11px;font-weight:700;word-break:break-word;margin:4px 0;}
 .gift-item a{color:var(--black);text-decoration:underline;font-weight:800;word-break:break-all;}
 .gift-item .gmeta{font-size:9px;opacity:.6;margin-top:4px;font-weight:800;}
 .gift-close{
@@ -771,189 +567,198 @@ html,body{
 }
 .gift-close:hover{transform:translate(2px,2px);}
 
-/* ═══ CONFIG MODAL ═══ */
 #configModal{
-  position:fixed;inset:0;
-  background:rgba(0,0,0,.85);
-  z-index:9996;display:none;
-  align-items:center;justify-content:center;padding:16px;
+  position:fixed;inset:0;background:rgba(0,0,0,.85);
+  z-index:9996;display:none;align-items:center;justify-content:center;padding:16px;
 }
 #configModal.active{display:flex;}
 .config-modal-box{
-  background:var(--black);
-  color:var(--white);
-  border:3px solid var(--yellow);
-  box-shadow:8px 8px 0 var(--red);
-  max-width:640px;width:100%;max-height:85vh;
-  overflow-y:auto;padding:18px;
-  font-family:var(--font-mono);
+  background:var(--black);color:var(--white);
+  border:3px solid var(--yellow);box-shadow:8px 8px 0 var(--red);
+  max-width:640px;width:100%;max-height:85vh;overflow-y:auto;
+  padding:18px;font-family:var(--font-mono);
 }
 .config-modal-box h2{
-  font-family:var(--font-display);
-  font-size:16px;color:var(--yellow);
+  font-family:var(--font-display);font-size:16px;color:var(--yellow);
   margin-bottom:6px;letter-spacing:-.3px;
 }
-.config-modal-box .csub{
-  font-size:10px;opacity:.6;margin-bottom:12px;
-  letter-spacing:.5px;
-}
+.config-modal-box .csub{font-size:10px;opacity:.6;margin-bottom:12px;letter-spacing:.5px;}
 .config-modal-box pre{
-  background:var(--yellow);
-  color:var(--black);
-  padding:12px;
-  border:3px solid var(--white);
-  font-size:11px;
-  font-weight:700;
-  white-space:pre-wrap;
-  word-break:break-all;
-  line-height:1.5;
-  overflow-x:auto;
+  background:var(--yellow);color:var(--black);padding:12px;
+  border:3px solid var(--white);font-size:11px;font-weight:700;
+  white-space:pre-wrap;word-break:break-all;line-height:1.5;overflow-x:auto;
 }
 .config-modal-box .cclose{
   margin-top:12px;padding:11px 16px;
   background:var(--yellow);color:var(--black);
-  border:3px solid var(--white);
-  font-family:var(--font-display);
-  font-size:13px;cursor:pointer;width:100%;
-  letter-spacing:1px;
+  border:3px solid var(--white);font-family:var(--font-display);
+  font-size:13px;cursor:pointer;width:100%;letter-spacing:1px;
 }
 
-/* ═══ CODE EDITOR MODAL ═══ */
 #codeModal,
 #bulkModal,
 #part1Modal,
 #part2Modal{
-  position:fixed;inset:0;
-  background:rgba(0,0,0,.9);
-  z-index:9995;display:none;
-  align-items:center;justify-content:center;padding:10px;
+  position:fixed;inset:0;background:rgba(0,0,0,.9);
+  z-index:9995;display:none;align-items:center;justify-content:center;padding:10px;
 }
 #codeModal.active,
 #bulkModal.active,
 #part1Modal.active,
 #part2Modal.active{display:flex;}
 .code-modal-box{
-  background:var(--black);
-  color:var(--white);
-  border:3px solid var(--green);
-  box-shadow:8px 8px 0 var(--yellow);
+  background:var(--black);color:var(--white);
+  border:3px solid var(--green);box-shadow:8px 8px 0 var(--yellow);
   max-width:900px;width:100%;max-height:95vh;
-  display:flex;flex-direction:column;
-  padding:0;
-  font-family:var(--font-mono);
-  overflow:hidden;
+  display:flex;flex-direction:column;padding:0;
+  font-family:var(--font-mono);overflow:hidden;
 }
 .code-modal-head{
-  background:var(--green);
-  color:var(--black);
-  padding:10px 14px;
-  font-family:var(--font-display);
-  font-size:13px;
-  letter-spacing:-.3px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:6px;
+  background:var(--green);color:var(--black);
+  padding:10px 14px;font-family:var(--font-display);
+  font-size:13px;letter-spacing:-.3px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:6px;
 }
-.code-modal-head .hint{
-  font-size:10px;
-  font-family:var(--font-mono);
-  font-weight:700;
-}
+.code-modal-head .hint{font-size:10px;font-family:var(--font-mono);font-weight:700;}
 .code-modal-box textarea{
-  flex:1;
-  min-height:280px;
-  padding:12px;
-  background:var(--black);
-  color:#00ff00;
-  border:none;
-  outline:none;
-  font-family:var(--font-mono);
-  font-size:12px;
-  font-weight:700;
-  line-height:1.5;
-  resize:none;
-  white-space:pre;
-  overflow:auto;
-  border-top:3px solid var(--yellow);
-  border-bottom:3px solid var(--yellow);
+  flex:1;min-height:280px;padding:12px;
+  background:var(--black);color:#00ff00;
+  border:none;outline:none;
+  font-family:var(--font-mono);font-size:12px;font-weight:700;
+  line-height:1.5;resize:none;white-space:pre;overflow:auto;
+  border-top:3px solid var(--yellow);border-bottom:3px solid var(--yellow);
   tab-size:2;
 }
 .code-modal-box textarea::placeholder{color:rgba(0,255,0,.4);}
 .code-modal-foot{
-  padding:10px 14px;
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  justify-content:flex-end;
+  padding:10px 14px;display:flex;gap:8px;
+  flex-wrap:wrap;justify-content:flex-end;
 }
 .code-modal-foot button{
-  padding:9px 16px;
-  border:3px solid var(--white);
-  font-family:var(--font-display);
-  font-size:12px;
-  cursor:pointer;
-  letter-spacing:1px;
+  padding:9px 16px;border:3px solid var(--white);
+  font-family:var(--font-display);font-size:12px;
+  cursor:pointer;letter-spacing:1px;
 }
-.code-modal-foot .btn-save{
-  background:var(--green);
-  color:var(--black);
-}
+.code-modal-foot .btn-save{background:var(--green);color:var(--black);}
 .code-modal-foot .btn-save:hover{transform:translate(2px,2px);}
-.code-modal-foot .btn-cancel{
-  background:var(--red);
-  color:var(--white);
-}
+.code-modal-foot .btn-cancel{background:var(--red);color:var(--white);}
 .code-modal-foot .btn-cancel:hover{transform:translate(2px,2px);}
 
-#bulkModal .code-modal-box{
-  border-color:var(--yellow);
-  box-shadow:8px 8px 0 var(--red);
-  max-width:900px;
-}
-#bulkModal .code-modal-head{
-  background:var(--yellow);
-  color:var(--black);
-}
+#bulkModal .code-modal-box{border-color:var(--yellow);box-shadow:8px 8px 0 var(--red);max-width:900px;}
+#bulkModal .code-modal-head{background:var(--yellow);color:var(--black);}
 #bulkModal .code-modal-box textarea{
-  color:#FFE600;
-  border-top:3px solid var(--green);
-  border-bottom:3px solid var(--green);
-  min-height:320px;
+  color:#FFE600;border-top:3px solid var(--green);
+  border-bottom:3px solid var(--green);min-height:320px;
 }
 
-#part1Modal .code-modal-box{
-  border-color:var(--cyan);
-  box-shadow:8px 8px 0 var(--red);
-}
-#part1Modal .code-modal-head{
-  background:var(--cyan);
-  color:var(--black);
-}
+#part1Modal .code-modal-box{border-color:var(--cyan);box-shadow:8px 8px 0 var(--red);}
+#part1Modal .code-modal-head{background:var(--cyan);color:var(--black);}
 #part1Modal .code-modal-box textarea{
-  color:#00E5FF;
-  border-top:3px solid var(--white);
-  border-bottom:3px solid var(--white);
-  min-height:320px;
+  color:#00E5FF;border-top:3px solid var(--white);
+  border-bottom:3px solid var(--white);min-height:320px;
 }
 
-#part2Modal .code-modal-box{
-  border-color:var(--pink);
-  box-shadow:8px 8px 0 var(--yellow);
-}
-#part2Modal .code-modal-head{
-  background:var(--pink);
-  color:var(--black);
-}
+#part2Modal .code-modal-box{border-color:var(--pink);box-shadow:8px 8px 0 var(--yellow);}
+#part2Modal .code-modal-head{background:var(--pink);color:var(--black);}
 #part2Modal .code-modal-box textarea{
-  color:#FF5EC7;
-  border-top:3px solid var(--white);
-  border-bottom:3px solid var(--white);
-  min-height:320px;
+  color:#FF5EC7;border-top:3px solid var(--white);
+  border-bottom:3px solid var(--white);min-height:320px;
 }
 
-/* ═══ NOTIF TOAST ═══ */
+/* ═══ FIXBUG MODAL ═══ */
+#fixbugModal{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.95);
+  z-index:9994;display:none;
+  align-items:center;justify-content:center;padding:8px;
+}
+#fixbugModal.active{display:flex;}
+.fixbug-box{
+  background:var(--black);color:#00ff00;
+  border:4px solid var(--yellow);box-shadow:10px 10px 0 var(--red);
+  width:100%;max-width:1000px;height:96vh;
+  display:flex;flex-direction:column;
+  font-family:var(--font-mono);overflow:hidden;
+}
+.fixbug-head{
+  background:var(--yellow);color:var(--black);
+  padding:8px 12px;display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:6px;font-family:var(--font-display);font-size:13px;letter-spacing:-.3px;
+}
+.fixbug-head .fb-tabs{display:flex;gap:4px;flex-wrap:wrap;}
+.fixbug-head .fb-tab{
+  padding:4px 10px;background:var(--black);color:var(--yellow);
+  border:2px solid var(--black);
+  font-family:var(--font-mono);font-weight:800;font-size:10px;
+  cursor:pointer;letter-spacing:.5px;
+}
+.fixbug-head .fb-tab.active{background:var(--red);color:var(--white);border-color:var(--black);}
+.fixbug-toolbar{
+  background:#111;color:var(--yellow);padding:6px 10px;
+  display:flex;gap:6px;flex-wrap:wrap;
+  border-top:2px solid var(--yellow);border-bottom:2px solid var(--yellow);
+  align-items:center;
+}
+.fixbug-toolbar input{
+  flex:1;min-width:120px;
+  background:var(--black);color:#00ff00;
+  border:2px solid var(--yellow);padding:5px 8px;
+  font-family:var(--font-mono);font-size:11px;font-weight:700;outline:none;
+}
+.fixbug-toolbar button{
+  background:var(--yellow);color:var(--black);
+  border:2px solid var(--black);padding:5px 10px;
+  font-family:var(--font-mono);font-weight:800;font-size:10px;
+  cursor:pointer;letter-spacing:.3px;
+}
+.fixbug-toolbar button:hover{transform:translate(1px,1px);}
+.fixbug-toolbar .fb-count{
+  background:var(--red);color:var(--white);padding:2px 8px;font-size:10px;font-weight:800;
+}
+.fixbug-body{
+  flex:1;position:relative;overflow:hidden;display:flex;
+}
+.fixbug-lines{
+  background:#0d0d0d;color:#555;padding:8px 6px;
+  font-size:11px;line-height:1.5;text-align:right;user-select:none;
+  border-right:2px solid var(--yellow);overflow:hidden;min-width:36px;
+}
+.fixbug-code{
+  flex:1;background:var(--black);color:#00ff00;
+  border:none;outline:none;padding:8px 10px;
+  font-family:var(--font-mono);font-size:11px;line-height:1.5;
+  font-weight:700;resize:none;white-space:pre;overflow:auto;
+  tab-size:2;caret-color:var(--yellow);
+}
+.fixbug-console{
+  display:none;flex:1;background:#000;color:#00ff00;
+  padding:8px 10px;font-family:var(--font-mono);
+  font-size:11px;line-height:1.5;overflow-y:auto;
+  white-space:pre-wrap;word-break:break-word;
+}
+.fixbug-console .log-err{color:var(--red);}
+.fixbug-console .log-warn{color:var(--yellow);}
+.fixbug-console .log-ok{color:#22C55E;}
+.fixbug-body.show-console .fixbug-lines,
+.fixbug-body.show-console .fixbug-code{display:none;}
+.fixbug-body.show-console .fixbug-console{display:block;}
+.fixbug-foot{
+  background:var(--yellow);color:var(--black);
+  padding:8px 12px;display:flex;justify-content:space-between;align-items:center;
+  gap:8px;flex-wrap:wrap;
+}
+.fixbug-foot .fb-info{font-size:10px;font-weight:800;}
+.fixbug-foot .fb-btns{display:flex;gap:6px;flex-wrap:wrap;}
+.fixbug-foot button{
+  padding:7px 14px;border:3px solid var(--black);
+  font-family:var(--font-display);font-size:12px;
+  cursor:pointer;letter-spacing:.5px;
+}
+.fixbug-foot .fb-save{background:var(--green);color:var(--black);}
+.fixbug-foot .fb-close{background:var(--red);color:var(--white);}
+.fixbug-foot .fb-reload{background:var(--cyan);color:var(--black);}
+
 .toast{
   position:fixed;top:14px;right:14px;
   background:var(--black);color:var(--yellow);
@@ -971,7 +776,6 @@ html,body{
 .toast.gift{background:var(--purple);color:var(--white);border-color:var(--black);}
 .toast.custom{background:var(--green);color:var(--black);border-color:var(--black);}
 
-/* ═══ RESPONSIVE ═══ */
 @media(max-width:480px){
   .dash-title{font-size:20px;}
   .dash-sub{font-size:9px;}
@@ -995,16 +799,16 @@ html,body{
   .code-modal-box textarea{font-size:11px;min-height:200px;padding:10px;}
   .code-modal-head{font-size:11px;padding:8px 10px;}
   .code-modal-foot button{font-size:11px;padding:8px 12px;}
+  .fixbug-box{height:98vh;}
+  .fixbug-code,.fixbug-lines,.fixbug-console{font-size:10px;}
+  .fixbug-head{font-size:11px;padding:6px 8px;}
+  .fixbug-toolbar{padding:5px 8px;}
 }
    </style>
    <body>
 
-<!-- ═══ STARFIELD BACKGROUND ═══ -->
 <div id="stars"></div>
 
-<!-- ══════════════════════════════════════════════
-     HACK OVERLAY (Update web)
-     ══════════════════════════════════════════════ -->
 <div id="hack">
   <div id="hackContent"></div>
   <div class="hack-center" id="hackCenter">
@@ -1013,13 +817,10 @@ html,body{
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     AUTH OVERLAY
-     ══════════════════════════════════════════════ -->
 <div id="auth">
   <div class="auth-box">
     <div class="auth-logo glitch" data-text="VarCommandTerm">VarCommandTerm</div>
-    <div class="auth-sub">▸ NEO-BRUTALIST COMMAND SYSTEM v2.0 ◂</div>
+    <div class="auth-sub">▸ NEO-BRUTALIST COMMAND SYSTEM v2.1 ◂</div>
 
     <div class="auth-tabs">
       <button id="tabLogin" class="active" onclick="switchAuth('login')">LOGIN</button>
@@ -1050,9 +851,6 @@ html,body{
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     DASHBOARD
-     ══════════════════════════════════════════════ -->
 <div id="dashboard">
   <div class="dash-header">
     <div class="dash-title glitch" data-text="VarCommandTerm">VarCommandTerm</div>
@@ -1070,7 +868,7 @@ html,body{
 
     <div class="dash-card">
       <div class="dc-title">🌐 INFO WEB</div>
-      <div class="dc-row"><span>Versi</span><b>v2.0</b></div>
+      <div class="dc-row"><span>Versi</span><b>v2.1</b></div>
       <div class="dc-row"><span>Tema</span><b>Neo-Brutalist</b></div>
       <div class="dc-row"><span>Backend</span><b>Firebase RTDB</b></div>
       <div class="dc-row"><span>Pembuat</span><b>Varoo</b></div>
@@ -1089,9 +887,7 @@ html,body{
 
     <div class="dash-card">
       <div class="dc-title">🎁 GIFT TERBARU</div>
-      <div id="dashGiftPreview" style="font-size:11px;font-weight:700;line-height:1.5;">
-        Memuat...
-      </div>
+      <div id="dashGiftPreview" style="font-size:11px;font-weight:700;line-height:1.5;">Memuat...</div>
     </div>
 
     <div class="dash-card">
@@ -1112,8 +908,7 @@ html,body{
 
   <div class="dash-actions">
     <button class="btn-start" onclick="enterTerminal()">
-      <span class="arrow">▶</span>
-      START COMMAND
+      <span class="arrow">▶</span> START COMMAND
     </button>
     <button class="btn-dash" onclick="openGiftModal()">🎁 LIHAT GIFT</button>
     <button class="btn-dash" onclick="showDashHelp()">❓ BANTUAN</button>
@@ -1121,15 +916,11 @@ html,body{
   </div>
 
   <div class="dash-footer">
-    ⚡ VarCommandTerm v2.0 — by Varoo — Powered by Firebase ⚡
+    ⚡ VarCommandTerm v2.1 — by Varoo — Powered by Firebase ⚡
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     APP (TERMINAL)
-     ══════════════════════════════════════════════ -->
 <div id="app">
-
   <div class="header">
     <div class="header-brand">
       <span class="dot"></span>
@@ -1159,24 +950,16 @@ html,body{
     <input type="text" id="cmdInput" placeholder="ketik command... (contoh: Vmenu)" autocomplete="off" autofocus>
     <button onclick="submitCmd()">↵</button>
   </div>
-
 </div>
 
-<!-- PASTE MODE INDICATOR -->
 <div class="paste-indicator" id="pasteIndicator" style="display:none;position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#00ff00;color:#000;padding:8px 16px;border:3px solid #000;font-weight:800;font-size:11px;letter-spacing:1px;z-index:100;">📝 PASTE MODE — akhiri dengan END</div>
 
-<!-- ══════════════════════════════════════════════
-     VIRUS OVERLAY
-     ══════════════════════════════════════════════ -->
 <div id="virus">
   <div class="vhead" id="virusHead">⚠ SYSTEM INFECTED ⚠</div>
   <div class="vlog" id="virusLog"></div>
   <div class="vtimer" id="virusTimer">00:00</div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     PANIC MODE
-     ══════════════════════════════════════════════ -->
 <div id="panic">
   <h1>503</h1>
   <p>SERVER UNDER MAINTENANCE</p>
@@ -1186,9 +969,6 @@ html,body{
   <button onclick="reloadFromPanic()" style="padding:10px 20px;background:#FF3B3B;color:#fff;border:3px solid #fff;font-family:inherit;font-weight:800;cursor:pointer;font-size:12px;">RELOAD</button>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     GIFT MODAL
-     ══════════════════════════════════════════════ -->
 <div id="giftModal">
   <div class="gift-modal-box">
     <h2>🎁 GIFT DARI DEV</h2>
@@ -1197,9 +977,6 @@ html,body{
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     CONFIG MODAL
-     ══════════════════════════════════════════════ -->
 <div id="configModal">
   <div class="config-modal-box">
     <h2>🔐 SERVER CONFIG — FIREBASE</h2>
@@ -1209,9 +986,6 @@ html,body{
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     CODE EDITOR MODAL (Vaddcommand / Veditcommand)
-     ══════════════════════════════════════════════ -->
 <div id="codeModal">
   <div class="code-modal-box">
     <div class="code-modal-head">
@@ -1219,7 +993,6 @@ html,body{
       <span class="hint">Tab = 2 spasi · Ctrl+S = simpan</span>
     </div>
     <textarea id="codeEditor" placeholder="function(args, argsStr) {
-  // kode kamu di sini
   addBubble('Halo dunia!', 'success');
 }"></textarea>
     <div class="code-modal-foot">
@@ -1229,9 +1002,6 @@ html,body{
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     BULK MODAL (Vaddallcommand)
-     ══════════════════════════════════════════════ -->
 <div id="bulkModal">
   <div class="code-modal-box">
     <div class="code-modal-head">
@@ -1254,9 +1024,6 @@ function(args, argsStr) {
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     PART 1 MODAL (HTML+CSS)
-     ══════════════════════════════════════════════ -->
 <div id="part1Modal">
   <div class="code-modal-box">
     <div class="code-modal-head">
@@ -1266,10 +1033,7 @@ function(args, argsStr) {
     <textarea id="part1Editor" placeholder="<!DOCTYPE html>
 <html>
 <head>
-  ...
-  <style>
-    ...
-  </style>
+  <style>...</style>
 </head>"></textarea>
     <div class="code-modal-foot">
       <button class="btn-cancel" onclick="closePart1Modal()">BATAL</button>
@@ -1278,9 +1042,6 @@ function(args, argsStr) {
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════
-     PART 2 MODAL (Body + JS)
-     ══════════════════════════════════════════════ -->
 <div id="part2Modal">
   <div class="code-modal-box">
     <div class="code-modal-head">
@@ -1288,10 +1049,7 @@ function(args, argsStr) {
       <span class="hint">Isi: &lt;body&gt;...&lt;/body&gt; + &lt;script&gt;...&lt;/script&gt;</span>
     </div>
     <textarea id="part2Editor" placeholder="<body>
-  ...
-  <script>
-    ...
-  </script>
+  <script>...</script>
 </body>
 </html>"></textarea>
     <div class="code-modal-foot">
@@ -1301,17 +1059,48 @@ function(args, argsStr) {
   </div>
 </div>
 
-<!-- MATRIX CANVAS -->
+<div id="fixbugModal">
+  <div class="fixbug-box">
+    <div class="fixbug-head">
+      <span>🔧 FIXBUG — Debug Editor</span>
+      <div class="fb-tabs">
+        <button class="fb-tab" data-tab="part1" onclick="switchFixbugTab('part1')">📄 PART 1</button>
+        <button class="fb-tab active" data-tab="part2" onclick="switchFixbugTab('part2')">📄 PART 2</button>
+        <button class="fb-tab" data-tab="console" onclick="switchFixbugTab('console')">📜 CONSOLE</button>
+      </div>
+    </div>
+
+    <div class="fixbug-toolbar">
+      <input type="text" id="fixbugSearch" placeholder="cari text... (Ctrl+F)">
+      <button onclick="fixbugSearch()">🔍 CARI</button>
+      <input type="number" id="fixbugGoto" placeholder="baris" style="max-width:70px;flex:0;">
+      <button onclick="fixbugGotoLine()">→ GO</button>
+      <span class="fb-count" id="fixbugCount">0 bytes</span>
+    </div>
+
+    <div class="fixbug-body" id="fixbugBody">
+      <div class="fixbug-lines" id="fixbugLines">1</div>
+      <textarea class="fixbug-code" id="fixbugCode" placeholder="(pilih tab part1/part2)" spellcheck="false"></textarea>
+      <div class="fixbug-console" id="fixbugConsole"></div>
+    </div>
+
+    <div class="fixbug-foot">
+      <div class="fb-info">💡 Ctrl+S save · Ctrl+F cari · Tab = 2 spasi</div>
+      <div class="fb-btns">
+        <button class="fb-reload" onclick="fixbugReload()">🔄 RELOAD</button>
+        <button class="fb-close" onclick="closeFixbug()">✖ TUTUP</button>
+        <button class="fb-save" onclick="saveFixbug()">💾 SIMPAN</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <canvas id="matrixcanvas"></canvas>
 
-<!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
 <script>
-/* ══════════════════════════════════════════════
-   FIREBASE INIT
-   ══════════════════════════════════════════════ */
 const firebaseConfig = {
   apiKey: "AIzaSyDp_3SDiQUAGX0_gw8BYtO2Ecnypl1GlgE",
   authDomain: "project1-f57d6.firebaseapp.com",
@@ -1324,11 +1113,8 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-/* ══════════════════════════════════════════════
-   GLOBAL STATE
-   ══════════════════════════════════════════════ */
 const APP = {
-  version: "2.0",
+  version: "2.1",
   name: "VarCommandTerm",
   startTime: Date.now(),
   user: null,
@@ -1346,12 +1132,8 @@ const APP = {
   statTimer: null,
   pasteMode: null,
   webCodeVersion: 0,
-  skipWebCode: false,
 };
 
-/* ══════════════════════════════════════════════
-   UTIL
-   ══════════════════════════════════════════════ */
 function $(id){ return document.getElementById(id); }
 function now(){ return new Date(); }
 function pad(n){ return String(n).padStart(2,'0'); }
@@ -1384,9 +1166,7 @@ function beep(freq, dur, vol){
     const ctx = new (window.AudioContext||window.webkitAudioContext)();
     const o = ctx.createOscillator();
     const g = ctx.createGain();
-    o.type='square';
-    o.frequency.value = freq;
-    g.gain.value = vol;
+    o.type='square'; o.frequency.value = freq; g.gain.value = vol;
     o.connect(g); g.connect(ctx.destination);
     o.start();
     g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime+dur);
@@ -1396,22 +1176,12 @@ function beep(freq, dur, vol){
 function isAdmin(){
   return APP.user && (APP.user.role === 'admin' || APP.user.username === 'vardev');
 }
-
-/* Strip prefix helper */
-function stripPrefix(name){
-  if(!APP.prefix) return name;
-  if(name.indexOf(APP.prefix) === 0) return name.slice(APP.prefix.length);
-  return name;
-}
 function addPrefix(name){
   if(!APP.prefix) return name;
   if(name.indexOf(APP.prefix) === 0) return name;
   return APP.prefix + name;
 }
 
-/* ══════════════════════════════════════════════
-   TOAST
-   ══════════════════════════════════════════════ */
 function toast(msg, type){
   type = type || "";
   const t = document.createElement('div');
@@ -1422,9 +1192,6 @@ function toast(msg, type){
   setTimeout(function(){ t.remove(); }, 2600);
 }
 
-/* ══════════════════════════════════════════════
-   CHAT LOG
-   ══════════════════════════════════════════════ */
 let _msgCount = 0;
 function addBubble(text, cls, meta){
   cls = cls || "sys";
@@ -1435,12 +1202,9 @@ function addBubble(text, cls, meta){
   chatlog.appendChild(b);
   chatlog.scrollTop = chatlog.scrollHeight;
   _msgCount++;
-  if(_msgCount % 10 === 0 && APP.user){
-    toast("💾 Auto-save berhasil.", "ok");
-  }
+  if(_msgCount % 10 === 0 && APP.user) toast("💾 Auto-save berhasil.", "ok");
   return b;
 }
-
 function addAscii(text){
   const chatlog = $('chatlog');
   const b = document.createElement('div');
@@ -1449,9 +1213,7 @@ function addAscii(text){
   chatlog.appendChild(b);
   chatlog.scrollTop = chatlog.scrollHeight;
 }
-
 function clearLog(){ $('chatlog').innerHTML = ''; }
-
 function loadingBar(label, cb){
   label = label || "Memproses";
   const chatlog = $('chatlog');
@@ -1459,7 +1221,6 @@ function loadingBar(label, cb){
   b.className = 'bubble sys info';
   chatlog.appendChild(b);
   chatlog.scrollTop = chatlog.scrollHeight;
-
   const steps = [0,15,30,45,60,75,90,105,120,135,150];
   let i = 0;
   function tick(){
@@ -1479,9 +1240,7 @@ function loadingBar(label, cb){
   tick();
 }
 
-/* ══════════════════════════════════════════════
-   AUTH
-   ══════════════════════════════════════════════ */
+/* ═══ AUTH ═══ */
 function switchAuth(which){
   $('tabLogin').classList.toggle('active', which==='login');
   $('tabDaftar').classList.toggle('active', which==='daftar');
@@ -1490,13 +1249,11 @@ function switchAuth(which){
   $('loginMsg').textContent = '';
   $('regMsg').textContent = '';
 }
-
 function showAuthMsg(el, msg, type){
   const e = $(el);
   e.textContent = msg;
   e.className = 'auth-msg ' + (type||"");
 }
-
 async function doLogin(ev){
   ev.preventDefault();
   const username = $('loginUser').value.trim().toLowerCase();
@@ -1515,14 +1272,11 @@ async function doLogin(ev){
     };
     db.ref('users/' + username + '/lastLogin').set(Date.now());
     showAuthMsg('loginMsg','✅ Berhasil! Masuk...','ok');
-    setTimeout(function(){
-      loadPrefix().then(showDashboard);
-    }, 500);
+    setTimeout(function(){ loadPrefix().then(showDashboard); }, 500);
   }catch(err){
     showAuthMsg('loginMsg','❌ Error: ' + err.message,'err');
   }
 }
-
 async function doDaftar(ev){
   ev.preventDefault();
   const username = $('regUser').value.trim().toLowerCase();
@@ -1552,7 +1306,6 @@ async function doDaftar(ev){
     showAuthMsg('regMsg','❌ Error: ' + err.message,'err');
   }
 }
-
 function doLogout(){
   if(APP.chatRef){ APP.chatRef.off(); APP.chatRef = null; }
   if(APP.clockTimer){ clearInterval(APP.clockTimer); APP.clockTimer = null; }
@@ -1568,9 +1321,7 @@ function doLogout(){
   switchAuth('login');
 }
 
-/* ══════════════════════════════════════════════
-   PREFIX
-   ══════════════════════════════════════════════ */
+/* ═══ PREFIX ═══ */
 async function loadPrefix(){
   try{
     const snap = await db.ref('settings/prefix').once('value');
@@ -1581,7 +1332,6 @@ async function loadPrefix(){
   }
   updatePrefixUI();
 }
-
 function updatePrefixUI(){
   const display = APP.prefix ? APP.prefix : "(kosong)";
   $('prefixPill').textContent = "PREFIX: " + display;
@@ -1593,40 +1343,32 @@ function updatePrefixUI(){
   $('inputPrompt').textContent = APP.prefix ? APP.prefix : "▸";
 }
 
-/* ══════════════════════════════════════════════
-   DASHBOARD
-   ══════════════════════════════════════════════ */
+/* ═══ DASHBOARD ═══ */
 function showDashboard(){
   $('auth').classList.add('hidden');
   $('app').classList.remove('active');
   $('dashboard').classList.add('active');
-
   $('dashUser').textContent = APP.user.username;
   $('dashRole').textContent = APP.user.role.toUpperCase();
   $('dashId').textContent = APP.user.id;
   $('dashCmdCount').textContent = Object.keys(COMMANDS).length + Object.keys(APP.customCmds).length;
   $('dashTz').textContent = Intl.DateTimeFormat().resolvedOptions().timeZone || "-";
   updatePrefixUI();
-
   if(APP.clockTimer) clearInterval(APP.clockTimer);
   function tick(){
     const d = now();
     $('dashClock').textContent = fmtTime(d);
     $('dashDate').textContent = fmtDate(d);
     const s = Math.floor((Date.now() - APP.startTime)/1000);
-    const h = Math.floor(s/3600);
-    const m = Math.floor((s%3600)/60);
-    const ss = s%60;
+    const h = Math.floor(s/3600), m = Math.floor((s%3600)/60), ss = s%60;
     $('dashUptime').textContent = h + "j " + m + "m " + ss + "d";
   }
   tick();
   APP.clockTimer = setInterval(tick, 1000);
-
   loadDashStats();
   loadDashGiftPreview();
   loadCustomCommands();
 }
-
 async function loadDashStats(){
   try{
     const [usersSnap, serversSnap, giftsSnap, customSnap] = await Promise.all([
@@ -1647,15 +1389,11 @@ async function loadDashStats(){
     $('dashTotalCustom').textContent = "?";
   }
 }
-
 async function loadDashGiftPreview(){
   try{
     const snap = await db.ref('gifts').once('value');
     const box = $('dashGiftPreview');
-    if(!snap.exists()){
-      box.innerHTML = '<div style="opacity:.6;">📭 Belum ada gift.</div>';
-      return;
-    }
+    if(!snap.exists()){ box.innerHTML = '<div style="opacity:.6;">📭 Belum ada gift.</div>'; return; }
     let arr = [];
     snap.forEach(function(ch){ arr.push(ch.val()); });
     arr.sort(function(a,b){ return b.at - a.at; });
@@ -1663,16 +1401,12 @@ async function loadDashGiftPreview(){
     arr.slice(0,3).forEach(function(g){
       html += '<div style="padding:5px 0;border-bottom:1px dashed rgba(0,0,0,.15);">';
       html += '<span style="background:#0a0a0a;color:#FFE600;padding:1px 5px;font-size:8px;font-weight:800;">' + escapeHtml(g.type.toUpperCase()) + '</span> ';
-      html += '<b>' + escapeHtml(g.title) + '</b>';
-      html += '</div>';
+      html += '<b>' + escapeHtml(g.title) + '</b></div>';
     });
     if(arr.length > 3){ html += '<div style="font-size:9px;opacity:.6;margin-top:5px;">+' + (arr.length-3) + ' lainnya</div>'; }
     box.innerHTML = html;
-  }catch(e){
-    $('dashGiftPreview').innerHTML = '<div style="opacity:.6;">Gagal memuat.</div>';
-  }
+  }catch(e){ $('dashGiftPreview').innerHTML = '<div style="opacity:.6;">Gagal memuat.</div>'; }
 }
-
 async function loadCustomCommands(){
   try{
     const snap = await db.ref('customcommands').once('value');
@@ -1683,11 +1417,8 @@ async function loadCustomCommands(){
       APP.customCmds[ch.key] = data;
       tryCompile(ch.key, data.code);
     });
-  }catch(e){
-    console.warn("loadCustomCommands error:", e);
-  }
+  }catch(e){ console.warn("loadCustomCommands error:", e); }
 }
-
 function showDashHelp(){
   alert(
     "❓ BANTUAN DASHBOARD\n\n" +
@@ -1695,44 +1426,36 @@ function showDashHelp(){
     "▸ LIHAT GIFT → lihat gift dari Dev\n" +
     "▸ KELUAR → logout akun\n\n" +
     "Di terminal, ketik " + addPrefix("menu") + " untuk daftar command.\n" +
-    "Ketik " + addPrefix("infogift") + " untuk cek gift.\n" +
     "Ketik " + addPrefix("chataccount") + " [user] untuk chat.\n" +
     "Ketik 'back' untuk keluar dari chat."
   );
 }
-
 function backToDashboard(){
   if(APP.chatRef){ APP.chatRef.off(); APP.chatRef = null; }
   APP.chatMode = null;
   APP.pasteMode = null;
   $('pasteIndicator').style.display = 'none';
-  $('cmdInput').classList.remove('paste-mode');
   $('app').classList.remove('chatmode');
   $('app').classList.remove('active');
   $('dashboard').classList.add('active');
   showDashboard();
 }
 
-/* ══════════════════════════════════════════════
-   ENTER TERMINAL
-   ══════════════════════════════════════════════ */
+/* ═══ ENTER TERMINAL ═══ */
 function enterTerminal(){
   $('dashboard').classList.remove('active');
   $('app').classList.add('active');
   $('btnBack').classList.add('show');
-
   $('userPill').textContent = APP.user.username;
   const rp = $('rolePill');
   rp.textContent = APP.user.role.toUpperCase();
   rp.className = 'pill' + (APP.user.role === 'admin' ? ' role-admin' : '');
   $('topUser').textContent = APP.user.username;
   $('topId').textContent = APP.user.id;
-
   if(APP.statTimer) clearInterval(APP.statTimer);
   function tick(){ $('topClock').textContent = fmtTime(now()); }
   tick();
   APP.statTimer = setInterval(tick, 1000);
-
   updatePrefixUI();
   clearLog();
   bootSequence();
@@ -1743,14 +1466,11 @@ function enterTerminal(){
   setTimeout(function(){ $('cmdInput').focus(); }, 200);
 }
 
-/* ══════════════════════════════════════════════
-   BOOT SEQUENCE
-   ══════════════════════════════════════════════ */
 function bootSequence(){
   return new Promise(function(resolve){
     const lines = [
       "╔══════════════════════════════════════════╗",
-      "║   VarCommandTerm v2.0 — BOOT SEQUENCE    ║",
+      "║   VarCommandTerm v2.1 — BOOT SEQUENCE    ║",
       "╚══════════════════════════════════════════╝",
       "",
       "▸ Memuat core system...",
@@ -1763,18 +1483,15 @@ function bootSequence(){
       "Halo " + APP.user.username + "! 👋",
       "Ketik " + addPrefix("menu") + " untuk lihat semua command.",
       "Ketik " + addPrefix("addallcommand") + " untuk bulk add.",
-      "Ketik " + addPrefix("chataccount") + " [user] untuk mulai chat.",
+      "Ketik " + addPrefix("fixbug") + " untuk debug editor.",
       ""
     ];
     let i = 0;
     function next(){
       if(i >= lines.length){ resolve(); return; }
       const line = lines[i];
-      if(line.indexOf("╔")===0 || line.indexOf("║")===0 || line.indexOf("╚")===0){
-        addAscii(line);
-      } else {
-        addBubble(line, "sys");
-      }
+      if(line.indexOf("╔")===0 || line.indexOf("║")===0 || line.indexOf("╚")===0) addAscii(line);
+      else addBubble(line, "sys");
       i++;
       setTimeout(next, line === "" ? 40 : 130);
     }
@@ -1782,9 +1499,7 @@ function bootSequence(){
   });
 }
 
-/* ══════════════════════════════════════════════
-   INPUT
-   ══════════════════════════════════════════════ */
+/* ═══ INPUT ═══ */
 const inputEl = $('cmdInput');
 const cmdHistory = [];
 let histIdx = -1;
@@ -1794,7 +1509,6 @@ inputEl.addEventListener('keydown', function(e){
   if(e.key === 'ArrowUp' && !APP.pasteMode && !APP.chatMode){ e.preventDefault(); histNav(-1); }
   if(e.key === 'ArrowDown' && !APP.pasteMode && !APP.chatMode){ e.preventDefault(); histNav(1); }
 });
-
 function histNav(dir){
   if(cmdHistory.length === 0) return;
   histIdx += dir;
@@ -1802,32 +1516,22 @@ function histNav(dir){
   if(histIdx >= cmdHistory.length) histIdx = cmdHistory.length;
   inputEl.value = cmdHistory[histIdx] || '';
 }
-
 function submitCmd(){
   const raw = inputEl.value;
   const trimmed = raw.trim();
   if(!trimmed && !APP.pasteMode) return;
   inputEl.value = '';
-
   if(APP.pasteMode){
-    if(trimmed === 'END' || trimmed === 'end'){
-      finishPasteMode();
-      return;
-    }
+    if(trimmed === 'END' || trimmed === 'end'){ finishPasteMode(); return; }
     APP.pasteMode.buffer.push(raw);
     addBubble("+ " + raw, "code");
     return;
   }
-
   if(APP.chatMode){
-    if(trimmed.toLowerCase() === 'back' || trimmed.toLowerCase() === 'kembali'){
-      exitChatMode();
-      return;
-    }
+    if(trimmed.toLowerCase() === 'back' || trimmed.toLowerCase() === 'kembali'){ exitChatMode(); return; }
     sendChatMessage(trimmed);
     return;
   }
-
   cmdHistory.push(trimmed);
   histIdx = cmdHistory.length;
   addBubble("> " + trimmed, "user", fmtTime(now()));
@@ -1835,36 +1539,24 @@ function submitCmd(){
   handleCommand(trimmed);
 }
 
-/* ══════════════════════════════════════════════
-   COMMAND ROUTER
-   ══════════════════════════════════════════════ */
 function handleCommand(raw){
   const parts = raw.trim().split(/\s+/);
   const cmdRaw = parts[0];
   const args = parts.slice(1);
   const argsStr = raw.trim().slice(cmdRaw.length).trim();
 
-  // Normalisasi: kalau prefix kosong, cmd = cmdRaw. Kalau ada prefix, cek apa ada.
   let cmd = cmdRaw;
   if(APP.prefix){
-    // support dua-duanya? — kalau user ketik tanpa prefix, tetap dianggap
-    // cek exact match dulu, kalau nggak ada, coba tambahkan prefix
     if(!COMMANDS[cmdRaw] && !APP.compiledCmds[cmdRaw]){
       cmd = addPrefix(cmdRaw);
     }
-  } else {
-    // prefix kosong — cuma pakai nama tanpa prefix (command lama `Vmenu` gak akan match)
-    cmd = cmdRaw;
   }
 
   let C = COMMANDS[cmd];
   if(!C){
     if(APP.compiledCmds[cmd]){
-      try{
-        APP.compiledCmds[cmd](args, argsStr);
-      }catch(e){
-        addBubble("💥 Error di custom command " + cmd + ":\n" + e.message, "error");
-      }
+      try{ APP.compiledCmds[cmd](args, argsStr); }
+      catch(e){ addBubble("💥 Error di custom command " + cmd + ":\n" + e.message, "error"); }
       return;
     }
     addBubble("❌ Command tidak dikenal: " + cmdRaw + "\nKetik " + addPrefix("menu") + " untuk daftar command.", "error");
@@ -1878,70 +1570,38 @@ function handleCommand(raw){
     addBubble("🚫 Command ini hanya untuk Dev/Owner.", "error");
     return;
   }
-  try{
-    C.run(args, argsStr);
-  }catch(e){
-    addBubble("💥 Error saat menjalankan command: " + e.message, "error");
-  }
+  try{ C.run(args, argsStr); }
+  catch(e){ addBubble("💥 Error saat menjalankan command: " + e.message, "error"); }
 }
 
-/* ══════════════════════════════════════════════
-   CONFIG MODAL
-   ══════════════════════════════════════════════ */
-function showConfigModal(text){
-  $('configContent').textContent = text;
-  $('configModal').classList.add('active');
-}
-function closeConfigModal(){
-  $('configModal').classList.remove('active');
-}
+/* ═══ MODAL HELPERS ═══ */
+function showConfigModal(text){ $('configContent').textContent = text; $('configModal').classList.add('active'); }
+function closeConfigModal(){ $('configModal').classList.remove('active'); }
 
-/* ══════════════════════════════════════════════
-   CODE EDITOR MODAL
-   ══════════════════════════════════════════════ */
 let currentEditCmd = null;
-
 function openCodeModal(cmdName, initialCode){
   currentEditCmd = cmdName;
   $('codeCmdName').textContent = cmdName;
-  $('codeEditor').value = initialCode || 'function(args, argsStr) {\n  // kode kamu di sini\n  addBubble("Halo dari ' + cmdName + '!", "custom");\n}';
+  $('codeEditor').value = initialCode || 'function(args, argsStr) {\n  addBubble("Halo dari ' + cmdName + '!", "custom");\n}';
   $('codeModal').classList.add('active');
   setTimeout(function(){ $('codeEditor').focus(); }, 100);
 }
+function closeCodeModal(){ $('codeModal').classList.remove('active'); currentEditCmd = null; }
 
-function closeCodeModal(){
-  $('codeModal').classList.remove('active');
-  currentEditCmd = null;
-}
-
-/* ══════════════════════════════════════════════
-   COMPILE HELPER
-   ══════════════════════════════════════════════ */
 function compileCustomFn(code){
   let body = code.trim();
-
   if(/^function\s*\(/.test(body)){
     const firstBrace = body.indexOf('{');
     const lastBrace = body.lastIndexOf('}');
-    if(firstBrace === -1 || lastBrace <= firstBrace){
-      throw new Error("Format function tidak lengkap (kurang kurung kurawal {})");
-    }
-    const inner = body.substring(firstBrace+1, lastBrace);
-    return new Function('args', 'argsStr', inner);
+    if(firstBrace === -1 || lastBrace <= firstBrace) throw new Error("Format function tidak lengkap");
+    return new Function('args', 'argsStr', body.substring(firstBrace+1, lastBrace));
   }
-
-  if(/=>/.test(body)){
-    return new Function('args', 'argsStr', 'return (' + body + ')(args, argsStr);');
-  }
-
+  if(/=>/.test(body)) return new Function('args', 'argsStr', 'return (' + body + ')(args, argsStr);');
   return new Function('args', 'argsStr', body);
 }
-
 function tryCompile(name, code){
-  try{
-    APP.compiledCmds[name] = compileCustomFn(code);
-    return true;
-  }catch(e){
+  try{ APP.compiledCmds[name] = compileCustomFn(code); return true; }
+  catch(e){
     console.warn("Compile error " + name + ":", e.message);
     APP.compiledCmds[name] = function(){
       addBubble("❌ Command " + name + " error compile: " + e.message, "error");
@@ -1950,60 +1610,43 @@ function tryCompile(name, code){
   }
 }
 
-/* ══════════════════════════════════════════════
-   SAVE CUSTOM COMMAND
-   ══════════════════════════════════════════════ */
 function saveCustomCommand(){
   if(!currentEditCmd) return;
   const code = $('codeEditor').value.trim();
   if(!code){ toast("❌ Code kosong!", "err"); return; }
-
-  try{
-    compileCustomFn(code);
-  }catch(e){
-    toast("❌ Syntax error: " + e.message, "err");
-    return;
-  }
-
+  try{ compileCustomFn(code); }
+  catch(e){ toast("❌ Syntax error: " + e.message, "err"); return; }
   db.ref('customcommands/' + currentEditCmd).set({
-    name: currentEditCmd,
-    code: code,
-    by: APP.user.username,
-    at: Date.now()
-  }).then(function(){
+    name: currentEditCmd, code: code, by: APP.user.username, at: Date.now()
+  }, function(err){
+    if(err){ toast("❌ Gagal: " + err.message, "err"); return; }
     APP.customCmds[currentEditCmd] = { name: currentEditCmd, code: code, by: APP.user.username, at: Date.now() };
     tryCompile(currentEditCmd, code);
-    toast("✅ Command " + currentEditCmd + " tersimpan!", "custom");
-    addBubble("✅ Custom command " + currentEditCmd + " tersimpan & siap dipakai.", "success");
+    toast("✅ " + currentEditCmd + " tersimpan!", "custom");
+    addBubble("✅ Custom command " + currentEditCmd + " tersimpan.", "success");
     closeCodeModal();
-  }).catch(function(e){
-    toast("❌ Gagal simpan: " + e.message, "err");
   });
 }
 
-/* ══════════════════════════════════════════════
-   BULK COMMAND — Vaddallcommand
-   ══════════════════════════════════════════════ */
+/* ═══ BULK ADD — FIXED ═══ */
 function openBulkModal(){
   $('bulkEditor').value = '';
   $('bulkModal').classList.add('active');
   setTimeout(function(){ $('bulkEditor').focus(); }, 100);
 }
-
-function closeBulkModal(){
-  $('bulkModal').classList.remove('active');
-}
+function closeBulkModal(){ $('bulkModal').classList.remove('active'); }
 
 function parseBulkCommands(text){
   const result = [];
-  const blocks = text.split(/^\s*\+\s*$/m);
+  const normalized = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+  const blocks = normalized.split(/^[ \t]*\+[ \t]*$/m);
   blocks.forEach(function(block){
     const trimmed = block.trim();
     if(!trimmed) return;
-    const nameMatch = trimmed.match(/^\[([^\]]+)\]\s*\n/);
+    const nameMatch = trimmed.match(/^\[([^\]]+)\][ \t]*\n/);
     if(!nameMatch) return;
     let name = nameMatch[1].trim();
-    if(name.indexOf(APP.prefix) !== 0){ name = APP.prefix + name; }
+    if(APP.prefix && name.indexOf(APP.prefix) !== 0){ name = APP.prefix + name; }
     const code = trimmed.substring(nameMatch[0].length).trim();
     if(!code) return;
     result.push({ name: name, code: code });
@@ -2013,70 +1656,96 @@ function parseBulkCommands(text){
 
 function saveBulkCommands(){
   const raw = $('bulkEditor').value;
-  if(!raw.trim()){ toast("❌ Kosong!", "err"); return; }
+  if(!raw || !raw.trim()){ toast("❌ Editor kosong!", "err"); return; }
 
   const list = parseBulkCommands(raw);
   if(list.length === 0){
     toast("❌ Tidak ada command valid!", "err");
     addBubble(
-      "❌ Tidak ada command valid terdeteksi.\n\n" +
-      "Pastikan format:\n" +
-      "[VnamaCommand]\n" +
-      "function(args, argsStr) { ... }\n" +
-      "+\n" +
-      "[VnamaLain]\n" +
-      "function(args, argsStr) { ... }", "error");
+      "❌ Tidak ada command valid.\n\n" +
+      "Format wajib:\n[VnamaCommand]\nfunction(args, argsStr) { ... }\n+\n[VnamaLain]\nfunction(args, argsStr) { ... }\n\n" +
+      "Catatan: pemisah + harus di BARIS SENDIRI.", "error");
     return;
   }
 
   addBubble("📦 Memproses " + list.length + " command...", "info");
 
   let success = 0, failed = 0;
-  let failedNames = [], successNames = [];
+  const successNames = [], failedNames = [];
 
-  const tasks = list.map(function(item){
-    return new Promise(function(resolve){
-      if(COMMANDS[item.name]){
-        failed++; failedNames.push(item.name + " (bentrok built-in)"); resolve(); return;
+  function saveOne(idx){
+    if(idx >= list.length){
+      let out = "📦 BULK ADD SELESAI\n━━━━━━━━━━━━━━━━━━━━\n";
+      out += "✅ Sukses : " + success + "\n❌ Gagal  : " + failed + "\n\n";
+      if(successNames.length){
+        out += "▸ Command baru:\n";
+        successNames.forEach(function(n){ out += "  ✓ " + n + "\n"; });
+        out += "\n";
       }
-      try{
-        compileCustomFn(item.code);
-      }catch(e){
-        failed++; failedNames.push(item.name + " (" + e.message + ")"); resolve(); return;
+      if(failedNames.length){
+        out += "▸ Yang gagal:\n";
+        failedNames.forEach(function(n){ out += "  ✗ " + n + "\n"; });
       }
+      addBubble(out, success > 0 ? "success" : "error");
+      toast("📦 " + success + " sukses, " + failed + " gagal", success > 0 ? "custom" : "err");
+      closeBulkModal();
+      return;
+    }
+
+    const item = list[idx];
+
+    if(COMMANDS[item.name]){
+      failed++; failedNames.push(item.name + " (bentrok built-in)");
+      setTimeout(function(){ saveOne(idx + 1); }, 30);
+      return;
+    }
+
+    try{ compileCustomFn(item.code); }
+    catch(e){
+      failed++; failedNames.push(item.name + " (" + e.message + ")");
+      setTimeout(function(){ saveOne(idx + 1); }, 30);
+      return;
+    }
+
+    let done = false;
+    const timeoutId = setTimeout(function(){
+      if(!done){
+        done = true;
+        failed++; failedNames.push(item.name + " (timeout 8s — cek Firebase rules)");
+        setTimeout(function(){ saveOne(idx + 1); }, 30);
+      }
+    }, 8000);
+
+    try{
       db.ref('customcommands/' + item.name).set({
         name: item.name, code: item.code, by: APP.user.username, at: Date.now()
-      }).then(function(){
-        APP.customCmds[item.name] = { name: item.name, code: item.code, by: APP.user.username, at: Date.now() };
-        tryCompile(item.name, item.code);
-        success++; successNames.push(item.name); resolve();
-      }).catch(function(e){
-        failed++; failedNames.push(item.name + " (FB: " + e.message + ")"); resolve();
+      }, function(err){
+        if(done) return;
+        done = true;
+        clearTimeout(timeoutId);
+        if(err){
+          failed++; failedNames.push(item.name + " (FB: " + err.message + ")");
+        } else {
+          APP.customCmds[item.name] = { name: item.name, code: item.code, by: APP.user.username, at: Date.now() };
+          tryCompile(item.name, item.code);
+          success++; successNames.push(item.name);
+        }
+        setTimeout(function(){ saveOne(idx + 1); }, 30);
       });
-    });
-  });
+    }catch(e){
+      if(!done){
+        done = true;
+        clearTimeout(timeoutId);
+        failed++; failedNames.push(item.name + " (exception: " + e.message + ")");
+        setTimeout(function(){ saveOne(idx + 1); }, 30);
+      }
+    }
+  }
 
-  Promise.all(tasks).then(function(){
-    let out = "📦 BULK ADD SELESAI\n━━━━━━━━━━━━━━━━━━━━\n";
-    out += "✅ Sukses : " + success + "\n❌ Gagal  : " + failed + "\n\n";
-    if(successNames.length){
-      out += "▸ Command baru:\n";
-      successNames.forEach(function(n){ out += "  ✓ " + n + "\n"; });
-      out += "\n";
-    }
-    if(failedNames.length){
-      out += "▸ Yang gagal:\n";
-      failedNames.forEach(function(n){ out += "  ✗ " + n + "\n"; });
-    }
-    addBubble(out, success > 0 ? "success" : "error");
-    toast("📦 " + success + " sukses, " + failed + " gagal", success > 0 ? "custom" : "err");
-    closeBulkModal();
-  });
+  saveOne(0);
 }
 
-/* ══════════════════════════════════════════════
-   PART1 / PART2 EDITOR (Web Code Live)
-   ══════════════════════════════════════════════ */
+/* ═══ PART1 / PART2 ═══ */
 function openPart1Modal(){
   db.ref('webcode/part1').once('value').then(function(snap){
     $('part1Editor').value = snap.val() || '';
@@ -2085,7 +1754,6 @@ function openPart1Modal(){
   });
 }
 function closePart1Modal(){ $('part1Modal').classList.remove('active'); }
-
 function openPart2Modal(){
   db.ref('webcode/part2').once('value').then(function(snap){
     $('part2Editor').value = snap.val() || '';
@@ -2094,30 +1762,30 @@ function openPart2Modal(){
   });
 }
 function closePart2Modal(){ $('part2Modal').classList.remove('active'); }
-
 function savePart1(){
   const code = $('part1Editor').value;
   if(!code.trim()){ toast("❌ Part 1 kosong!", "err"); return; }
   const version = Date.now();
-  db.ref('webcode/part1').set(code);
-  db.ref('webcode/meta').update({ part1At: version, part1By: APP.user.username });
-  toast("✅ Part 1 tersimpan & published!", "custom");
-  closePart1Modal();
-  triggerHackOverlay("PART 1");
+  db.ref('webcode/part1').set(code, function(err){
+    if(err){ toast("❌ Gagal: " + err.message, "err"); return; }
+    db.ref('webcode/meta').update({ part1At: version, part1By: APP.user.username });
+    toast("✅ Part 1 tersimpan!", "custom");
+    closePart1Modal();
+    triggerHackOverlay("PART 1");
+  });
 }
-
 function savePart2(){
   const code = $('part2Editor').value;
   if(!code.trim()){ toast("❌ Part 2 kosong!", "err"); return; }
   const version = Date.now();
-  db.ref('webcode/part2').set(code);
-  db.ref('webcode/meta').update({ part2At: version, part2By: APP.user.username });
-  toast("✅ Part 2 tersimpan & published!", "custom");
-  closePart2Modal();
-  triggerHackOverlay("PART 2");
+  db.ref('webcode/part2').set(code, function(err){
+    if(err){ toast("❌ Gagal: " + err.message, "err"); return; }
+    db.ref('webcode/meta').update({ part2At: version, part2By: APP.user.username });
+    toast("✅ Part 2 tersimpan!", "custom");
+    closePart2Modal();
+    triggerHackOverlay("PART 2");
+  });
 }
-
-/* Subscribe ke perubahan webcode → trigger hack overlay semua user */
 function subscribeWebCode(){
   db.ref('webcode/meta').on('value', function(snap){
     const m = snap.val();
@@ -2130,8 +1798,6 @@ function subscribeWebCode(){
     APP.webCodeVersion = latest;
   });
 }
-
-/* Efek hack: layar hitam + spam sound + spam notif */
 function triggerHackOverlay(by){
   const hack = $('hack');
   const content = $('hackContent');
@@ -2139,7 +1805,6 @@ function triggerHackOverlay(by){
   content.innerHTML = '';
   center.classList.remove('show');
   hack.classList.add('active');
-
   const lines = [
     "[ALERT] External payload detected...",
     "[WARN] Rebuilding layout from remote...",
@@ -2148,32 +1813,21 @@ function triggerHackOverlay(by){
     "[OK] Patch applied successfully.",
     "[NOTICE] Update by @" + by + " — please refresh."
   ];
-
-  // Spam sound
   let soundCount = 0;
   const soundInterval = setInterval(function(){
     beep(80 + Math.random()*400, 0.05, 0.06);
     soundCount++;
     if(soundCount > 20) clearInterval(soundInterval);
   }, 120);
-
-  // Spam system notif
   let notifCount = 0;
   const notifInterval = setInterval(function(){
-    toast("⚠ SYSTEM ALERT — WEB UPDATE DETECTED", "err");
+    toast("⚠ SYSTEM ALERT — WEB UPDATE", "err");
     notifCount++;
     if(notifCount > 6) clearInterval(notifInterval);
   }, 280);
-
-  // Tulis baris demi baris
   let i = 0;
   function nextLine(){
-    if(i >= lines.length){
-      // Tampilkan tombol refresh
-      center.classList.add('show');
-      // keep sound going
-      return;
-    }
+    if(i >= lines.length){ center.classList.add('show'); return; }
     const div = document.createElement('div');
     div.className = 'hack-line';
     div.textContent = lines[i];
@@ -2182,34 +1836,160 @@ function triggerHackOverlay(by){
     setTimeout(nextLine, 180);
   }
   nextLine();
-
-  // Kalau user nggak klik refresh, tetap ada di layar
-  // (biar dramatis, kita biarkan sampai user klik REFRESH)
 }
 
-/* ══════════════════════════════════════════════
-   WEB CODE LOADER (kalau ada versi Firebase)
-   ══════════════════════════════════════════════ */
-async function checkAndLoadWebCode(){
-  try{
-    const metaSnap = await db.ref('webcode/meta').once('value');
-    const meta = metaSnap.val();
-    if(!meta || !meta.part1At) return; // tidak ada versi custom
-    // skip kalau user opt-out
-    if(APP.skipWebCode) return;
-    // ini versi default, kita gak render ulang.
-    // Kalau mau aktif: uncomment kode di bawah, tapi hati-hati infinite loop.
-    // console.log("📥 Custom webcode available:", meta);
-    // Untuk sekarang cuma log. Karena kalau auto-render ulang,
-    // butuh mekanisme khusus (iframe / shadow DOM).
-  }catch(e){
-    console.warn("checkAndLoadWebCode:", e.message);
+/* ═══ FIXBUG ═══ */
+const FIXBUG = {
+  current: "part2",
+  part1: "",
+  part2: "",
+  consoleLogs: [],
+};
+
+function openFixbug(){
+  const modal = $('fixbugModal');
+  modal.classList.add('active');
+  FIXBUG.consoleLogs = [];
+  renderConsole();
+  Promise.all([
+    db.ref('webcode/part1').once('value'),
+    db.ref('webcode/part2').once('value')
+  ]).then(function(snaps){
+    FIXBUG.part1 = snaps[0].val() || "(kosong — belum ada part1 di Firebase)";
+    FIXBUG.part2 = snaps[1].val() || "(kosong — belum ada part2 di Firebase)";
+    switchFixbugTab('part2');
+    logFixbug("✅ Fixbug dibuka. Mode: edit part2.", "ok");
+  }).catch(function(e){
+    FIXBUG.part1 = "(gagal load: " + e.message + ")";
+    FIXBUG.part2 = "(gagal load: " + e.message + ")";
+    switchFixbugTab('part2');
+  });
+}
+function closeFixbug(){ $('fixbugModal').classList.remove('active'); }
+
+function switchFixbugTab(which){
+  FIXBUG.current = which;
+  const body = $('fixbugBody');
+  body.classList.remove('show-console');
+  document.querySelectorAll('.fb-tab').forEach(function(t){
+    t.classList.toggle('active', t.dataset.tab === which);
+  });
+  if(which === "console"){
+    body.classList.add('show-console');
+    renderConsole();
+    return;
   }
+  const code = which === "part1" ? FIXBUG.part1 : FIXBUG.part2;
+  $('fixbugCode').value = code;
+  updateLineNumbers();
+  $('fixbugCount').textContent = code.length + " bytes";
+  logFixbug("📂 Tab " + which + " (" + code.length + " bytes)", "ok");
 }
 
-/* ══════════════════════════════════════════════
-   TAB KEY + CTRL+S UNTUK SEMUA EDITOR
-   ══════════════════════════════════════════════ */
+function updateLineNumbers(){
+  const code = $('fixbugCode').value;
+  const lines = code.split("\n").length;
+  let s = "";
+  for(let i=1;i<=lines;i++) s += i + "\n";
+  $('fixbugLines').textContent = s;
+}
+
+function saveFixbug(){
+  if(FIXBUG.current === "console"){ toast("⚠ Pilih tab part1/part2 dulu.", "err"); return; }
+  const code = $('fixbugCode').value;
+  if(!code.trim()){ toast("❌ Code kosong!", "err"); return; }
+  if(FIXBUG.current === "part1") FIXBUG.part1 = code;
+  else FIXBUG.part2 = code;
+  const version = Date.now();
+  const update = {};
+  update[FIXBUG.current === "part1" ? "part1At" : "part2At"] = version;
+  update[FIXBUG.current === "part1" ? "part1By" : "part2By"] = APP.user.username;
+  db.ref('webcode/' + FIXBUG.current).set(code, function(err){
+    if(err){ toast("❌ Gagal simpan: " + err.message, "err"); logFixbug("❌ Save error: " + err.message, "err"); return; }
+    db.ref('webcode/meta').update(update);
+    toast("✅ " + FIXBUG.current + " tersimpan!", "custom");
+    logFixbug("✅ Saved " + FIXBUG.current + " (" + code.length + " bytes)", "ok");
+  });
+}
+
+function fixbugSearch(){
+  const q = $('fixbugSearch').value;
+  if(!q){ toast("Masukin kata kunci dulu.", "err"); return; }
+  const code = $('fixbugCode').value;
+  const ta = $('fixbugCode');
+  const idx = code.indexOf(q, ta.selectionEnd || 0);
+  if(idx === -1){
+    const idx2 = code.indexOf(q);
+    if(idx2 === -1){ toast("❌ Tidak ketemu: " + q, "err"); logFixbug("🔍 Not found: " + q, "warn"); return; }
+    ta.focus();
+    ta.setSelectionRange(idx2, idx2 + q.length);
+    ta.scrollTop = (code.substring(0, idx2).split("\n").length) * 18 - 80;
+    toast("🔍 Ketemu (wrap)", "ok");
+    return;
+  }
+  ta.focus();
+  ta.setSelectionRange(idx, idx + q.length);
+  const lineNum = code.substring(0, idx).split("\n").length;
+  ta.scrollTop = (lineNum - 3) * 18;
+  toast("🔍 Ketemu di baris " + lineNum, "ok");
+  logFixbug("🔍 Found at line " + lineNum, "ok");
+}
+
+function fixbugGotoLine(){
+  const n = parseInt($('fixbugGoto').value);
+  if(!n || n < 1){ toast("Baris tidak valid.", "err"); return; }
+  const code = $('fixbugCode').value;
+  const lines = code.split("\n");
+  if(n > lines.length){ toast("Baris max: " + lines.length, "err"); return; }
+  let pos = 0;
+  for(let i=0;i<n-1;i++) pos += lines[i].length + 1;
+  const ta = $('fixbugCode');
+  ta.focus();
+  ta.setSelectionRange(pos, pos);
+  ta.scrollTop = (n - 3) * 18;
+  logFixbug("→ Line " + n, "ok");
+}
+
+function fixbugReload(){
+  logFixbug("🔄 Reloading from Firebase...", "warn");
+  Promise.all([
+    db.ref('webcode/part1').once('value'),
+    db.ref('webcode/part2').once('value')
+  ]).then(function(snaps){
+    FIXBUG.part1 = snaps[0].val() || "";
+    FIXBUG.part2 = snaps[1].val() || "";
+    switchFixbugTab(FIXBUG.current);
+    toast("🔄 Reloaded!", "ok");
+  });
+}
+
+function logFixbug(msg, type){
+  const d = new Date();
+  const time = pad(d.getHours()) + ":" + pad(d.getMinutes()) + ":" + pad(d.getSeconds());
+  FIXBUG.consoleLogs.push({ time: time, msg: msg, type: type || "ok" });
+  renderConsole();
+}
+function renderConsole(){
+  const box = $('fixbugConsole');
+  if(!box) return;
+  let s = "═══ FIXBUG CONSOLE ═══\n\n";
+  if(FIXBUG.consoleLogs.length === 0) s += "(kosong — belum ada log)\n";
+  else FIXBUG.consoleLogs.forEach(function(l){ s += "[" + l.time + "] " + l.msg + "\n"; });
+  box.textContent = s;
+  box.scrollTop = box.scrollHeight;
+}
+
+window.addEventListener('error', function(e){
+  if($('fixbugModal') && $('fixbugModal').classList.contains('active')){
+    logFixbug("💥 ERROR: " + e.message + " (line " + e.lineno + ")", "err");
+  }
+});
+window.addEventListener('unhandledrejection', function(e){
+  if($('fixbugModal') && $('fixbugModal').classList.contains('active')){
+    logFixbug("💥 PROMISE: " + (e.reason && e.reason.message ? e.reason.message : e.reason), "err");
+  }
+});
+
 document.addEventListener('DOMContentLoaded', function(){
   function attachEditor(ta, saveFn){
     if(!ta) return;
@@ -2221,60 +2001,69 @@ document.addEventListener('DOMContentLoaded', function(){
         ta.value = ta.value.substring(0, start) + "  " + ta.value.substring(end);
         ta.selectionStart = ta.selectionEnd = start + 2;
       }
-      if(e.key === 's' && (e.ctrlKey || e.metaKey)){
-        e.preventDefault();
-        saveFn();
-      }
+      if(e.key === 's' && (e.ctrlKey || e.metaKey)){ e.preventDefault(); saveFn(); }
     });
   }
   attachEditor($('codeEditor'), saveCustomCommand);
   attachEditor($('bulkEditor'), saveBulkCommands);
   attachEditor($('part1Editor'), savePart1);
   attachEditor($('part2Editor'), savePart2);
+
+  const ta = $('fixbugCode');
+  if(ta){
+    ta.addEventListener('input', function(){
+      updateLineNumbers();
+      $('fixbugCount').textContent = ta.value.length + " bytes";
+    });
+    ta.addEventListener('scroll', function(){ $('fixbugLines').scrollTop = ta.scrollTop; });
+    ta.addEventListener('keydown', function(e){
+      if(e.key === 'Tab'){
+        e.preventDefault();
+        const start = ta.selectionStart;
+        const end = ta.selectionEnd;
+        ta.value = ta.value.substring(0, start) + "  " + ta.value.substring(end);
+        ta.selectionStart = ta.selectionEnd = start + 2;
+        updateLineNumbers();
+      }
+      if(e.key === 's' && (e.ctrlKey || e.metaKey)){ e.preventDefault(); saveFixbug(); }
+      if(e.key === 'f' && (e.ctrlKey || e.metaKey)){ e.preventDefault(); $('fixbugSearch').focus(); }
+    });
+  }
+  const s = $('fixbugSearch');
+  if(s) s.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); fixbugSearch(); } });
+  const g = $('fixbugGoto');
+  if(g) g.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); fixbugGotoLine(); } });
 });
 
-/* ══════════════════════════════════════════════
-   PASTE MODE (legacy)
-   ══════════════════════════════════════════════ */
+/* ═══ PASTE MODE ═══ */
 function startPasteMode(cmdName){
   APP.pasteMode = { cmdName: cmdName, buffer: [] };
   $('pasteIndicator').style.display = 'block';
-  $('cmdInput').classList.add('paste-mode');
   $('cmdInput').placeholder = "paste code di sini, ketik END kalau selesai...";
   addBubble("📝 PASTE MODE — kirim code, akhiri dengan 'END'", "info");
 }
-
 function finishPasteMode(){
   if(!APP.pasteMode) return;
   const cmdName = APP.pasteMode.cmdName;
   const code = APP.pasteMode.buffer.join("\n");
   APP.pasteMode = null;
   $('pasteIndicator').style.display = 'none';
-  $('cmdInput').classList.remove('paste-mode');
   updatePrefixUI();
-
-  if(!code.trim()){ addBubble("❌ Code kosong. Dibatalkan.", "error"); return; }
-
-  try{ compileCustomFn(code); }
-  catch(e){ addBubble("❌ Syntax error: " + e.message, "error"); return; }
-
+  if(!code.trim()){ addBubble("❌ Code kosong.", "error"); return; }
+  try{ compileCustomFn(code); } catch(e){ addBubble("❌ Syntax error: " + e.message, "error"); return; }
   db.ref('customcommands/' + cmdName).set({
     name: cmdName, code: code, by: APP.user.username, at: Date.now()
   }).then(function(){
     APP.customCmds[cmdName] = { name: cmdName, code: code, by: APP.user.username, at: Date.now() };
     tryCompile(cmdName, code);
     addBubble("✅ Command " + cmdName + " tersimpan!", "success");
-  }).catch(function(e){
-    addBubble("❌ Gagal simpan: " + e.message, "error");
   });
 }
 
 /* ══════════════════════════════════════════════
-   DAFTAR COMMAND
+   COMMANDS
    ══════════════════════════════════════════════ */
 const COMMANDS = {
-
-  /* ═══ UTILITY (10) ═══ */
   Vmenu: { run: function(){
     const cats = {
       "UTILITY": ["Vmenu","Vclear","Vreset","Vstats","Vtime","Vdate","Vping","Vuptime","Vinfo","Vversion"],
@@ -2283,7 +2072,7 @@ const COMMANDS = {
       "SERVER": ["Vclaimserver","VlistserverDB","VbuyprivateserverDB"],
       "ADMIN": ["Vusers","Vbroadcast","Vsay","Vpanic","VkelolaserverDB","Vsettingdatabaseweb","VconfirmPSuser","Vgiftprivateserver"],
       "CUSTOM": ["Vaddcommand","Vaddallcommand","Veditcommand","Vlistcommand","Vhapuscommand","Vsetprefix","Vprefixoff","Vresetprefix"],
-      "WEBCode": ["Vaddpart1code","Vaddpart2code","Vviewcode","Vdownloadcode","Vresetcode"],
+      "WEBCode": ["Vaddpart1code","Vaddpart2code","Vviewcode","Vdownloadcode","Vresetcode","Vfixbug"],
       "SECRET": ["Vsecret","Vunlockabcsecret","Vvirus","Vvirusoff","Vvirusstatus","Vhint","Vhack","Vmatrix","Vlove","Vowner","Vcredit"],
       "CHAT": ["Vchataccount"]
     };
@@ -2305,16 +2094,11 @@ const COMMANDS = {
     addBubble(out, "sys");
   }},
 
-  Vclear: { run: function(){
-    clearLog();
-    addBubble("🧹 Log dibersihkan.", "sys");
-  }},
-
+  Vclear: { run: function(){ clearLog(); addBubble("🧹 Log dibersihkan.", "sys"); }},
   Vreset: { run: function(args){
     if(args[0] === 'confirm'){ clearLog(); bootSequence(); return; }
     addBubble("⚠ Yakin reset log? Ketik: " + addPrefix("reset") + " confirm", "info");
   }},
-
   Vstats: { run: function(){
     loadingBar("Menghitung statistik", async function(){
       let totalUser = 0, totalServer = 0, totalGift = 0, totalCustom = 0;
@@ -2334,8 +2118,7 @@ const COMMANDS = {
         "🖥 Total server   : " + totalServer + "\n" +
         "🎁 Total gift     : " + totalGift + "\n" +
         "🔧 Custom cmd     : " + totalCustom + "\n" +
-        "🎯 Built-in cmd   : " + Object.keys(COMMANDS).length + "\n" +
-        "\n" +
+        "🎯 Built-in cmd   : " + Object.keys(COMMANDS).length + "\n\n" +
         "▸ Kamu:\n" +
         "  Nama : " + APP.user.username + "\n" +
         "  Role : " + APP.user.role.toUpperCase() + "\n" +
@@ -2344,13 +2127,9 @@ const COMMANDS = {
       addBubble(out, "success");
     });
   }},
-
   Vtime: { run: function(){ addBubble("🕐 " + fmtTime(now()), "sys"); }},
   Vdate: { run: function(){ addBubble("📅 " + fmtDate(now()), "sys"); }},
-  Vping: { run: function(){
-    const r = Math.floor(Math.random()*80 + 20);
-    addBubble("🏓 Pong!\nLatency: " + r + "ms", "sys");
-  }},
+  Vping: { run: function(){ const r = Math.floor(Math.random()*80 + 20); addBubble("🏓 Pong!\nLatency: " + r + "ms", "sys"); }},
   Vuptime: { run: function(){
     const s = Math.floor((Date.now() - APP.startTime)/1000);
     const h = Math.floor(s/3600), m = Math.floor((s%3600)/60), ss = s%60;
@@ -2369,12 +2148,8 @@ const COMMANDS = {
   }},
   Vversion: { run: function(){ addBubble("🔖 " + APP.name + " v" + APP.version, "sys"); }},
 
-  /* ═══ USER ═══ */
   Vwhoami: { run: function(){
-    addBubble(
-      "👤 Nama : " + APP.user.username + "\n" +
-      "🎖 Role : " + APP.user.role.toUpperCase() + "\n" +
-      "🆔 ID   : " + APP.user.id, "success");
+    addBubble("👤 Nama : " + APP.user.username + "\n🎖 Role : " + APP.user.role.toUpperCase() + "\n🆔 ID   : " + APP.user.id, "success");
   }},
   Vmyid: { run: function(){ addBubble("🆔 ID kamu: " + APP.user.id, "sys"); }},
   Vrank: { run: function(){
@@ -2400,13 +2175,9 @@ const COMMANDS = {
     });
   }},
 
-  /* ═══ GIFT ═══ */
   Vdevgift: { adminOnly: true, run: function(args, argsStr){
     if(!argsStr){
-      addBubble(
-        "🎁 CARA PAKAI " + addPrefix("devgift") + ":\n" +
-        "Format: " + addPrefix("devgift") + " [tipe] [judul] | [isi] | [deskripsi]\n\n" +
-        "Tipe: link | apk | teks | file | os | dll", "info");
+      addBubble("🎁 Format: " + addPrefix("devgift") + " [tipe] [judul] | [isi] | [deskripsi]\nTipe: link|apk|teks|file|os|dll", "info");
       return;
     }
     const m = argsStr.match(/^(\S+)\s+(.+)$/);
@@ -2417,7 +2188,6 @@ const COMMANDS = {
     const isi = segs[1] || "";
     const desc = segs[2] || "Hadiah dari Dev 🎁";
     if(!isi){ addBubble("❌ Isi gift kosong.", "error"); return; }
-
     const gift = {
       id: "GIFT-" + randId(8).toUpperCase(),
       type: tipe, title: judul, content: isi, desc: desc,
@@ -2426,9 +2196,8 @@ const COMMANDS = {
     db.ref('gifts/' + gift.id).set(gift).then(function(){
       addBubble("✅ Gift terkirim!\nID: " + gift.id + "\nTipe: " + tipe + "\nJudul: " + judul, "success");
       db.ref('broadcast').push({ msg: "🎁 Gift baru dari Dev: " + judul, from: "DEV", at: Date.now() });
-    }).catch(function(e){ addBubble("❌ Error: " + e.message, "error"); });
+    });
   }},
-
   Vinfogift: { run: function(){
     loadingBar("Memuat gift dari Dev", async function(){
       try{
@@ -2448,7 +2217,6 @@ const COMMANDS = {
     });
   }},
 
-  /* ═══ TOOLS ═══ */
   Vcalc: { run: function(args, argsStr){
     if(!argsStr){ addBubble("📐 Pakai: " + addPrefix("calc") + " 5*8+100", "error"); return; }
     try{
@@ -2457,14 +2225,12 @@ const COMMANDS = {
       addBubble("🧮 " + argsStr + " = " + hasil, "success");
     }catch(e){ addBubble("❌ Rumus tidak valid.", "error"); }
   }},
-
   Vsearch: { run: function(args, argsStr){
     if(!argsStr){ addBubble("🔎 Pakai: " + addPrefix("search") + " kata kunci", "error"); return; }
     const url = "https://www.google.com/search?q=" + encodeURIComponent(argsStr);
     addBubble("🔎 Membuka Google: " + argsStr, "info");
     setTimeout(function(){ window.open(url, "_blank"); }, 400);
   }},
-
   Vbackup: { run: function(){
     try{
       const data = JSON.stringify({ user: APP.user, gifts: APP.gifts, custom: APP.customCmds, exportedAt: Date.now() }, null, 2);
@@ -2472,7 +2238,6 @@ const COMMANDS = {
       addBubble("✅ Backup dikirim ke console (F12).", "success");
     }catch(e){ addBubble("❌ Backup gagal: " + e.message, "error"); }
   }},
-
   Vexport: { run: function(){
     try{
       const data = { user: APP.user, gifts: APP.gifts, custom: APP.customCmds, exportedAt: new Date().toISOString() };
@@ -2485,15 +2250,11 @@ const COMMANDS = {
     }catch(e){ addBubble("❌ Export gagal: " + e.message, "error"); }
   }},
 
-  /* ═══ SERVER ═══ */
   VlistserverDB: { run: function(){
     loadingBar("Memuat server", async function(){
       try{
         const snap = await db.ref('servers').once('value');
-        if(!snap.exists()){
-          addBubble("📡 Belum ada server. Buat dengan:\n" + addPrefix("kelolaserverDB") + " add [nama] [max]", "info");
-          return;
-        }
+        if(!snap.exists()){ addBubble("📡 Belum ada server.", "info"); return; }
         let out = "╔══ SERVER LIST ══╗\n\n";
         snap.forEach(function(ch){
           const s = ch.val();
@@ -2506,13 +2267,9 @@ const COMMANDS = {
       }catch(e){ addBubble("❌ Error: " + e.message, "error"); }
     });
   }},
-
   Vclaimserver: { run: function(args){
     const id = args[0];
-    if(!id){
-      addBubble("📌 Pakai: " + addPrefix("claimserver") + " [id]", "info");
-      return;
-    }
+    if(!id){ addBubble("📌 Pakai: " + addPrefix("claimserver") + " [id]", "info"); return; }
     db.ref('servers/' + id).once('value').then(function(snap){
       if(!snap.exists()){ addBubble("❌ Server tidak ditemukan.", "error"); return; }
       const s = snap.val();
@@ -2531,18 +2288,12 @@ const COMMANDS = {
           "// By       : " + (s.createdBy||"-") + "\n";
         showConfigModal(configText);
       });
-    }).catch(function(e){ addBubble("❌ Error: " + e.message, "error"); });
+    });
   }},
-
   VbuyprivateserverDB: { run: function(){
-    addBubble(
-      "💎 PRIVATE SERVER\n" +
-      "━━━━━━━━━━━━━━━━━━\n" +
-      "Hubungi owner: " + addPrefix("owner") + "\n" +
-      "Konfirmasi admin: " + addPrefix("confirmPSuser") + " [reqId]", "info");
+    addBubble("💎 PRIVATE SERVER\n━━━━━━━━━━━━━━━━━━\nHubungi owner: " + addPrefix("owner") + "\nKonfirmasi admin: " + addPrefix("confirmPSuser") + " [reqId]", "info");
   }},
 
-  /* ═══ ADMIN ═══ */
   Vusers: { adminOnly: true, run: function(){
     loadingBar("Memuat user", async function(){
       try{
@@ -2561,30 +2312,25 @@ const COMMANDS = {
       }catch(e){ addBubble("❌ Error: " + e.message, "error"); }
     });
   }},
-
   Vbroadcast: { adminOnly: true, run: function(args, argsStr){
     if(!argsStr){ addBubble("📢 Pakai: " + addPrefix("broadcast") + " pesan...", "error"); return; }
     db.ref('broadcast').push({ msg: argsStr, from: APP.user.username, at: Date.now() }).then(function(){
       addBubble("📢 Broadcast terkirim!", "success");
-    }).catch(function(e){ addBubble("❌ Error: " + e.message, "error"); });
+    });
   }},
-
   Vsay: { run: function(args, argsStr){
     if(!argsStr){ addBubble("💬 Pakai: " + addPrefix("say") + " pesan...", "error"); return; }
     toast("💬 " + argsStr, "ok");
     addBubble("💬 Notif lokal: " + argsStr, "sys");
   }},
-
   Vpanic: { run: function(){
     addBubble("💣 Mode PANIC aktif dalam 1 detik...", "error");
     setTimeout(function(){ $('panic').classList.add('active'); }, 1000);
   }},
-
   VkelolaserverDB: { adminOnly: true, run: function(args, argsStr){
     if(!argsStr){
       addBubble(
-        "⚙ KELOLA SERVER DB\n" +
-        "━━━━━━━━━━━━━━━━━━\n" +
+        "⚙ KELOLA SERVER DB\n━━━━━━━━━━━━━━━━━━\n" +
         addPrefix("kelolaserverDB") + " add [nama] [max]\n" +
         addPrefix("kelolaserverDB") + " remove [id]\n" +
         addPrefix("kelolaserverDB") + " list\n" +
@@ -2593,26 +2339,19 @@ const COMMANDS = {
       return;
     }
     const sub = args[0];
-
     if(sub === 'add'){
       const name = args[1] || ("Server-" + randId(4));
       const max = parseInt(args[2]) || 5;
       const id = "ID_" + randId(8);
-
       const fullConfig = prompt("📋 Paste FULL config database:");
-      if(!fullConfig){
-        addBubble("❌ Config database kosong. Dibatalkan.", "error");
-        return;
-      }
-
+      if(!fullConfig){ addBubble("❌ Config database kosong.", "error"); return; }
       db.ref('servers/' + id).set({
         name: name, max: max, id: id, users: {},
         config: fullConfig,
         createdAt: Date.now(), createdBy: APP.user.username
       }).then(function(){
-        addBubble(
-          "✅ Server dibuat!\nID: " + id + "\nNama: " + name + "\nMax: " + max + "\nConfig database tersimpan.", "success");
-      }).catch(function(e){ addBubble("❌ Error: " + e.message, "error"); });
+        addBubble("✅ Server dibuat!\nID: " + id + "\nNama: " + name + "\nMax: " + max, "success");
+      });
       return;
     }
     if(sub === 'remove'){
@@ -2645,11 +2384,9 @@ const COMMANDS = {
     }
     addBubble("❌ Subcommand tidak dikenal: " + sub, "error");
   }},
-
   Vsettingdatabaseweb: { adminOnly: true, run: function(){
     addBubble("⚙ SETTING DATABASE WEB\nVersi : v8.2\nStatus: ✅ Firebase RTDB\nRegion: asia-southeast1", "info");
   }},
-
   VconfirmPSuser: { adminOnly: true, run: function(args){
     const reqId = args[0];
     if(!reqId){ addBubble("📌 Pakai: " + addPrefix("confirmPSuser") + " PS-xxxxx", "error"); return; }
@@ -2660,57 +2397,36 @@ const COMMANDS = {
       confirmedBy: APP.user.username, confirmedAt: Date.now()
     }).then(function(){ addBubble("✅ " + reqId + " dikonfirmasi. Durasi: " + dur, "success"); });
   }},
-
   Vgiftprivateserver: { adminOnly: true, run: function(args){
     const user = args[0], harga = args[1], waktu = args[2];
-    if(!user || !harga || !waktu){
-      addBubble("📌 Pakai: " + addPrefix("giftprivateserver") + " [user] [harga] [hari|perm]", "error"); return;
-    }
+    if(!user || !harga || !waktu){ addBubble("📌 Pakai: " + addPrefix("giftprivateserver") + " [user] [harga] [hari|perm]", "error"); return; }
     db.ref('users/' + user + '/privateServer').set({
       harga: harga, waktu: waktu, giftedBy: APP.user.username, giftedAt: Date.now()
     }).then(function(){ addBubble("🎁 Private Server → @" + user, "success"); });
   }},
 
-  /* ═══ CUSTOM COMMAND MANAGER ═══ */
   Vaddcommand: { adminOnly: true, run: function(args, argsStr){
     if(!argsStr){
       addBubble(
-        "🔧 CARA PAKAI " + addPrefix("addcommand") + "\n" +
-        "━━━━━━━━━━━━━━━━━━━━━━━━\n" +
-        "Format: " + addPrefix("addcommand") + " [namaCommand]\n\n" +
-        "API tersedia:\n" +
-        "  args, argsStr, APP, db, addBubble, addAscii,\n" +
-        "  toast, clearLog, loadingBar, escapeHtml,\n" +
-        "  fmtTime, fmtDate, now, randId, $, COMMANDS", "info");
+        "🔧 " + addPrefix("addcommand") + " [namaCommand]\n\n" +
+        "API: args, argsStr, APP, db, addBubble, addAscii,\n" +
+        "toast, clearLog, loadingBar, escapeHtml,\n" +
+        "fmtTime, fmtDate, now, randId, $, COMMANDS", "info");
       return;
     }
     let name = args[0];
     if(!name){ addBubble("❌ Kasih nama command!", "error"); return; }
-    if(name.indexOf(APP.prefix) !== 0){ name = APP.prefix + name; }
+    if(name.indexOf(APP.prefix) !== 0 && APP.prefix) name = APP.prefix + name;
     if(COMMANDS[name]){ addBubble("❌ Nama command sudah dipakai built-in.", "error"); return; }
-    if(APP.customCmds[name]){
-      addBubble("⚠ Command sudah ada. Pakai " + addPrefix("editcommand") + " " + name + " untuk edit.", "info");
-      return;
-    }
+    if(APP.customCmds[name]){ addBubble("⚠ Command sudah ada. Pakai " + addPrefix("editcommand") + " " + name, "info"); return; }
     openCodeModal(name, 'function(args, argsStr) {\n  addBubble("Halo dari ' + name + '!", "custom");\n  if(args[0]) addBubble("Args: " + args.join(", "), "sys");\n}');
   }},
 
   Vaddallcommand: { adminOnly: true, run: function(args, argsStr){
     if(!argsStr){
       addBubble(
-        "📦 CARA PAKAI " + addPrefix("addallcommand") + "\n" +
-        "━━━━━━━━━━━━━━━━━━━━━━━━\n" +
-        "Ketik: " + addPrefix("addallcommand") + " go\n\n" +
-        "Format:\n" +
-        "[VnamaCommand]\n" +
-        "function(args, argsStr) {\n" +
-        "  // kode kamu\n" +
-        "}\n" +
-        "+\n" +
-        "[VnamaLain]\n" +
-        "function(args, argsStr) {\n" +
-        "  // kode kamu\n" +
-        "}", "info");
+        "📦 " + addPrefix("addallcommand") + " go\n\n" +
+        "Format:\n[VnamaCommand]\nfunction(args, argsStr) { ... }\n+\n[VnamaLain]\nfunction(args, argsStr) { ... }", "info");
       return;
     }
     openBulkModal();
@@ -2719,7 +2435,7 @@ const COMMANDS = {
   Veditcommand: { adminOnly: true, run: function(args){
     const name = args[0];
     if(!name){ addBubble("📌 Pakai: " + addPrefix("editcommand") + " [namaCommand]", "error"); return; }
-    if(!APP.customCmds[name]){ addBubble("❌ Command custom tidak ditemukan: " + name, "error"); return; }
+    if(!APP.customCmds[name]){ addBubble("❌ Tidak ditemukan: " + name, "error"); return; }
     openCodeModal(name, APP.customCmds[name].code);
   }},
 
@@ -2737,76 +2453,48 @@ const COMMANDS = {
   Vhapuscommand: { adminOnly: true, run: function(args, argsStr){
     if(!argsStr){
       addBubble(
-        "🗑 CARA PAKAI " + addPrefix("hapuscommand") + "\n" +
-        "━━━━━━━━━━━━━━━━━━━━━━━━\n" +
-        "Hapus 1: " + addPrefix("hapuscommand") + " Vnama\n" +
-        "Hapus banyak: " + addPrefix("hapuscommand") + " Vnama1 Vnama2\n" +
-        "Atau pakai +: " + addPrefix("hapuscommand") + " Vnama1 + Vnama2", "info");
+        "🗑 " + addPrefix("hapuscommand") + " [nama1] [nama2] ...\n" +
+        "Atau pakai +: " + addPrefix("hapuscommand") + " Vnama1 + Vnama2\n" +
+        "Konfirmasi: tambah 'confirm' di akhir.", "info");
       return;
     }
-
     const names = argsStr.split(/\s*\+\s*|\s+/).map(function(s){ return s.trim(); }).filter(Boolean);
-    if(names.length === 0){ addBubble("❌ Nggak ada nama command.", "error"); return; }
-
+    if(names.length === 0){ addBubble("❌ Nggak ada nama.", "error"); return; }
     const valid = [], invalid = [];
     names.forEach(function(n){
       if(COMMANDS[n]) invalid.push(n + " (built-in)");
       else if(!APP.customCmds[n]) invalid.push(n + " (tidak ada)");
       else valid.push(n);
     });
-
     if(valid.length === 0){
       addBubble("❌ Tidak ada command valid.\n\n" + invalid.map(function(x){ return "  ✗ " + x; }).join("\n"), "error");
       return;
     }
-
-    let confirmMsg = "⚠ Yakin hapus " + valid.length + " command?\n\n";
-    valid.forEach(function(n){ confirmMsg += "  ▸ " + n + "\n"; });
-    if(invalid.length){
-      confirmMsg += "\nYang dilewati:\n";
-      invalid.forEach(function(x){ confirmMsg += "  ✗ " + x + "\n"; });
-    }
-    confirmMsg += "\nKetik: " + addPrefix("hapuscommand") + " " + argsStr + " confirm";
-
     if(args[args.length-1] !== 'confirm'){
-      addBubble(confirmMsg, "info");
+      let msg = "⚠ Yakin hapus " + valid.length + " command?\n\n";
+      valid.forEach(function(n){ msg += "  ▸ " + n + "\n"; });
+      if(invalid.length){ msg += "\nDilewati:\n"; invalid.forEach(function(x){ msg += "  ✗ " + x + "\n"; }); }
+      msg += "\nKetik: " + addPrefix("hapuscommand") + " " + argsStr + " confirm";
+      addBubble(msg, "info");
       return;
     }
-
     addBubble("🗑 Menghapus " + valid.length + " command...", "info");
-
     let done = 0, fail = 0;
     const failNames = [];
-
     const tasks = valid.map(function(n){
       return new Promise(function(resolve){
-        db.ref('customcommands/' + n).remove().then(function(){
-          delete APP.customCmds[n];
-          delete APP.compiledCmds[n];
-          done++; resolve();
-        }).catch(function(e){
-          fail++; failNames.push(n + " (" + e.message + ")"); resolve();
+        db.ref('customcommands/' + n).remove(function(err){
+          if(err){ fail++; failNames.push(n + " (" + err.message + ")"); }
+          else { delete APP.customCmds[n]; delete APP.compiledCmds[n]; done++; }
+          resolve();
         });
       });
     });
-
     Promise.all(tasks).then(function(){
       let out = "🗑 HAPUS SELESAI\n━━━━━━━━━━━━━━━━━━━━\n";
-      out += "✅ Terhapus : " + done + "\n❌ Gagal    : " + fail + "\n\n";
-      if(done > 0){
-        out += "▸ Yang dihapus:\n";
-        valid.forEach(function(n){
-          if(!failNames.find(function(f){ return f.indexOf(n) === 0; })){
-            out += "  ✓ " + n + "\n";
-          }
-        });
-      }
-      if(failNames.length){
-        out += "\n▸ Yang gagal:\n";
-        failNames.forEach(function(f){ out += "  ✗ " + f + "\n"; });
-      }
+      out += "✅ Terhapus : " + done + "\n❌ Gagal    : " + fail + "\n";
+      if(failNames.length){ out += "\n▸ Gagal:\n"; failNames.forEach(function(f){ out += "  ✗ " + f + "\n"; }); }
       addBubble(out, done > 0 ? "success" : "error");
-      toast("🗑 " + done + " dihapus, " + fail + " gagal", done > 0 ? "custom" : "err");
     });
   }},
 
@@ -2814,14 +2502,10 @@ const COMMANDS = {
     if(args.length === 0){
       addBubble(
         "📌 CARA PAKAI " + addPrefix("setprefix") + "\n" +
-        "━━━━━━━━━━━━━━━━━━━━━━━━\n" +
         "Set prefix: " + addPrefix("setprefix") + " [karakter]\n" +
-        "  Contoh: " + addPrefix("setprefix") + " !\n\n" +
-        "Kosongin prefix (tanpa prefix):\n" +
-        "  " + addPrefix("setprefix") + " --empty\n" +
-        "  atau " + addPrefix("prefixoff") + "\n\n" +
-        "Reset ke default V:\n" +
-        "  " + addPrefix("resetprefix"), "info");
+        "Kosongin: " + addPrefix("setprefix") + " --empty\n" +
+        "Atau: " + addPrefix("prefixoff") + "\n" +
+        "Reset: " + addPrefix("resetprefix"), "info");
       return;
     }
     const p = args[0];
@@ -2829,7 +2513,7 @@ const COMMANDS = {
       db.ref('settings/prefix').set("").then(function(){
         APP.prefix = "";
         updatePrefixUI();
-        addBubble("✅ Prefix dimatikan. Sekarang command tanpa prefix.\nContoh: `menu`, `addcommand`, `help`", "success");
+        addBubble("✅ Prefix dimatikan. Contoh: `menu`, `addcommand`.", "success");
         db.ref('broadcast').push({ msg: "⚙ Prefix dimatikan oleh Dev", from: "DEV", at: Date.now() });
       });
       return;
@@ -2839,7 +2523,7 @@ const COMMANDS = {
       APP.prefix = p;
       updatePrefixUI();
       addBubble("✅ Prefix diganti jadi: " + p, "success");
-      db.ref('broadcast').push({ msg: "⚙ Prefix diganti jadi '" + p + "' oleh Dev", from: "DEV", at: Date.now() });
+      db.ref('broadcast').push({ msg: "⚙ Prefix diganti jadi '" + p + "'", from: "DEV", at: Date.now() });
     });
   }},
 
@@ -2847,7 +2531,7 @@ const COMMANDS = {
     db.ref('settings/prefix').set("").then(function(){
       APP.prefix = "";
       updatePrefixUI();
-      addBubble("✅ Prefix dimatikan. Sekarang command tanpa prefix.\nContoh: `menu`, `addcommand`, `help`", "success");
+      addBubble("✅ Prefix dimatikan.", "success");
       db.ref('broadcast').push({ msg: "⚙ Prefix dimatikan oleh Dev", from: "DEV", at: Date.now() });
     });
   }},
@@ -2860,14 +2544,8 @@ const COMMANDS = {
     });
   }},
 
-  /* ═══ WEBCode — Live HTML editor ═══ */
-  Vaddpart1code: { adminOnly: true, run: function(){
-    openPart1Modal();
-  }},
-
-  Vaddpart2code: { adminOnly: true, run: function(){
-    openPart2Modal();
-  }},
+  Vaddpart1code: { adminOnly: true, run: function(){ openPart1Modal(); }},
+  Vaddpart2code: { adminOnly: true, run: function(){ openPart2Modal(); }},
 
   Vviewcode: { adminOnly: true, run: function(){
     loadingBar("Memuat webcode", async function(){
@@ -2883,27 +2561,10 @@ const COMMANDS = {
         let out = "🧩 WEBCODE STATUS\n━━━━━━━━━━━━━━━━━━━━\n";
         out += "Part 1: " + (p1 ? (p1.length + " bytes") : "belum diisi") + "\n";
         out += "Part 2: " + (p2 ? (p2.length + " bytes") : "belum diisi") + "\n\n";
-        if(meta.part1At) out += "Part 1 update: " + new Date(meta.part1At).toLocaleString() + " (by @" + (meta.part1By||"-") + ")\n";
-        if(meta.part2At) out += "Part 2 update: " + new Date(meta.part2At).toLocaleString() + " (by @" + (meta.part2By||"-") + ")\n";
+        if(meta.part1At) out += "P1 update: " + new Date(meta.part1At).toLocaleString() + " @" + (meta.part1By||"-") + "\n";
+        if(meta.part2At) out += "P2 update: " + new Date(meta.part2At).toLocaleString() + " @" + (meta.part2By||"-") + "\n";
         addBubble(out, "info");
-
-        if(p1){
-          const b = document.createElement('div');
-          b.className = 'bubble sys code';
-          b.textContent = "=== PART 1 (first 500 chars) ===\n" + p1.substring(0,500) + (p1.length > 500 ? "\n..." : "");
-          $('chatlog').appendChild(b);
-          $('chatlog').scrollTop = $('chatlog').scrollHeight;
-        }
-        if(p2){
-          const b = document.createElement('div');
-          b.className = 'bubble sys code';
-          b.textContent = "=== PART 2 (first 500 chars) ===\n" + p2.substring(0,500) + (p2.length > 500 ? "\n..." : "");
-          $('chatlog').appendChild(b);
-          $('chatlog').scrollTop = $('chatlog').scrollHeight;
-        }
-      }catch(e){
-        addBubble("❌ Error: " + e.message, "error");
-      }
+      }catch(e){ addBubble("❌ Error: " + e.message, "error"); }
     });
   }},
 
@@ -2916,20 +2577,15 @@ const COMMANDS = {
         ]);
         const p1 = p1snap.val();
         const p2 = p2snap.val();
-        if(!p1 && !p2){
-          addBubble("📭 Belum ada webcode tersimpan.", "info");
-          return;
-        }
+        if(!p1 && !p2){ addBubble("📭 Belum ada webcode.", "info"); return; }
         const full = (p1 || "") + "\n" + (p2 || "");
         const blob = new Blob([full], {type:'text/html'});
         const a = document.createElement('a');
         a.href = URL.createObjectURL(blob);
         a.download = "varcommandterm_full_" + Date.now() + ".html";
         a.click();
-        addBubble("📥 File HTML di-download!\nUkuran: " + full.length + " bytes.", "success");
-      }catch(e){
-        addBubble("❌ Error: " + e.message, "error");
-      }
+        addBubble("📥 File HTML di-download! (" + full.length + " bytes)", "success");
+      }catch(e){ addBubble("❌ Error: " + e.message, "error"); }
     });
   }},
 
@@ -2940,18 +2596,21 @@ const COMMANDS = {
     }
     db.ref('webcode').remove().then(function(){
       APP.webCodeVersion = 0;
-      addBubble("🗑 Webcode dihapus. Web akan pakai versi default.", "success");
+      addBubble("🗑 Webcode dihapus.", "success");
     });
   }},
 
-  /* ═══ SECRET (11) ═══ */
+  Vfixbug: { adminOnly: true, run: function(){
+    if(!isAdmin()){ addBubble("🚫 Khusus Dev.", "error"); return; }
+    openFixbug();
+  }},
+
   Vsecret: { run: function(){
     const a = Math.floor(Math.random()*50)+10;
     const b = Math.floor(Math.random()*50)+10;
     APP.secretPending = { soal: a + " + " + b + " = ?", jaw: a+b, at: Date.now() };
     addBubble("🔐 VERIFIKASI SECRET\nJawab: " + APP.secretPending.soal + "\n\nPakai: " + addPrefix("unlockabcsecret") + " [jawaban]", "info");
   }},
-
   Vunlockabcsecret: { run: function(args){
     if(!APP.secretPending){ addBubble("❌ Mulai dulu: " + addPrefix("secret"), "error"); return; }
     if(Date.now() - APP.secretPending.at > 300000){
@@ -2966,7 +2625,6 @@ const COMMANDS = {
       addBubble("❌ Salah. Tunggu 30 detik.", "error");
     }
   }},
-
   Vvirus: { secret: true, run: function(args){
     const target = args[0], durStr = args[1];
     const detik = Math.min(parseInt(durStr)||60, isAdmin()?900:300);
@@ -2991,9 +2649,7 @@ const COMMANDS = {
   Vvirusstatus: { secret: true, run: function(){
     addBubble("🦠 Status: " + ($('virus').classList.contains('active') ? "AKTIF" : "OFF"), "sys");
   }},
-  Vhint: { secret: true, run: function(){
-    addBubble("💡 Coba: " + addPrefix("virus") + " [user] [detik]", "info");
-  }},
+  Vhint: { secret: true, run: function(){ addBubble("💡 Coba: " + addPrefix("virus") + " [user] [detik]", "info"); }},
   Vhack: { secret: true, run: function(){
     addBubble("💻 Fake hack...");
     const lines = ["[*] Initializing...","[*] Bypassing firewall...","[+] Access granted","[*] Downloading 1.2TB...","[+] HACK COMPLETE ✅"];
@@ -3005,19 +2661,14 @@ const COMMANDS = {
   }},
   Vmatrix: { secret: true, run: function(){
     startMatrix();
-    addBubble("🟢 Matrix rain aktif. Ketik " + addPrefix("matrix") + " lagi untuk stop.", "success");
+    addBubble("🟢 Matrix rain aktif.", "success");
   }},
-  Vlove: { secret: true, run: function(){
-    addBubble("❤️ VarCommandTerm sayang " + APP.user.username + "! ❤️", "info");
-  }},
-  Vowner: { secret: true, run: function(){
-    addBubble("👑 OWNER: Varoo\n📛 " + APP.name, "info");
-  }},
+  Vlove: { secret: true, run: function(){ addBubble("❤️ Sayang " + APP.user.username + "! ❤️", "info"); }},
+  Vowner: { secret: true, run: function(){ addBubble("👑 OWNER: Varoo\n📛 " + APP.name, "info"); }},
   Vcredit: { secret: true, run: function(){
     addBubble("═══ CREDIT ═══\nCreator : Varoo\nWeb     : " + APP.name + " v" + APP.version + "\nBackend : Firebase RTDB", "info");
   }},
 
-  /* ═══ CHAT ═══ */
   Vchataccount: { run: function(args){
     const target = args[0];
     if(!target){ addBubble("📌 Pakai: " + addPrefix("chataccount") + " [username]", "error"); return; }
@@ -3028,7 +2679,6 @@ const COMMANDS = {
     });
   }},
 
-  /* ═══ QUICK ═══ */
   Vqc: { run: function(){
     addBubble(
       "⚡ QUICK COMMAND\n" +
@@ -3038,6 +2688,7 @@ const COMMANDS = {
       "▸ " + addPrefix("infogift") + "\n" +
       "▸ " + addPrefix("addcommand") + "\n" +
       "▸ " + addPrefix("addallcommand") + "\n" +
+      "▸ " + addPrefix("fixbug") + "\n" +
       "▸ " + addPrefix("chataccount") + " [user]", "info");
   }},
   Vhelp: { run: function(){
@@ -3048,16 +2699,13 @@ const COMMANDS = {
       "▸ " + addPrefix("addallcommand") + " — bikin banyak sekaligus\n" +
       "▸ " + addPrefix("hapuscommand") + " — hapus command (bulk)\n" +
       "▸ " + addPrefix("setprefix") + " — ganti prefix\n" +
-      "▸ " + addPrefix("addpart1code") + " — edit HTML+CSS live\n" +
-      "▸ " + addPrefix("addpart2code") + " — edit JS live\n" +
+      "▸ " + addPrefix("fixbug") + " — debug editor\n" +
       "▸ " + addPrefix("chataccount") + " [user] — chat\n" +
       "▸ 'back' — keluar dari chat mode", "info");
   }}
 };
 
-/* ══════════════════════════════════════════════
-   GIFT MODAL
-   ══════════════════════════════════════════════ */
+/* ═══ GIFT MODAL ═══ */
 function openGiftModal(){
   const box = $('giftList');
   box.innerHTML = "";
@@ -3084,9 +2732,7 @@ function openGiftModal(){
 }
 function closeGiftModal(){ $('giftModal').classList.remove('active'); }
 
-/* ══════════════════════════════════════════════
-   SUBSCRIBERS
-   ══════════════════════════════════════════════ */
+/* ═══ SUBSCRIBERS ═══ */
 function subscribeGifts(){
   db.ref('gifts').on('value', function(snap){
     APP.gifts = [];
@@ -3106,7 +2752,6 @@ function subscribeGifts(){
     }
   });
 }
-
 function subscribeCustomCommands(){
   db.ref('customcommands').on('child_added', function(snap){
     const name = snap.key, data = snap.val();
@@ -3124,7 +2769,6 @@ function subscribeCustomCommands(){
     delete APP.compiledCmds[name];
   });
 }
-
 function subscribeVirus(){
   if(!APP.user) return;
   db.ref('virus/' + APP.user.username).limitToLast(1).on('child_added', function(snap){
@@ -3137,9 +2781,7 @@ function subscribeVirus(){
   });
 }
 
-/* ══════════════════════════════════════════════
-   VIRUS OVERLAY
-   ══════════════════════════════════════════════ */
+/* ═══ VIRUS ═══ */
 function launchVirus(target, dur){
   const V = $('virus');
   const log = $('virusLog');
@@ -3162,14 +2804,12 @@ function launchVirus(target, dur){
       clearInterval(APP.virusTimer); clearInterval(logTimer);
       APP.virusTimer = null;
       V.classList.remove('active');
-      toast("🛑 Virus off otomatis.", "ok");
+      toast("🛑 Virus off.", "ok");
     }
   }, 1000);
 }
 
-/* ══════════════════════════════════════════════
-   MATRIX RAIN
-   ══════════════════════════════════════════════ */
+/* ═══ MATRIX ═══ */
 function startMatrix(){
   const c = $('matrixcanvas');
   if(c.classList.contains('active')){
@@ -3207,24 +2847,16 @@ window.addEventListener('resize', function(){
   }
 });
 
-/* ══════════════════════════════════════════════
-   CHAT MODE
-   ══════════════════════════════════════════════ */
+/* ═══ CHAT ═══ */
 function enterChatMode(target){
   APP.chatMode = target;
   $('app').classList.add('chatmode');
   $('inputPrompt').textContent = "@";
   inputEl.placeholder = "ketik pesan... (ketik 'back' untuk balik)";
   clearLog();
-
   const roomId = [APP.user.username, target].sort().join("__");
   addBubble(
-    "╔══ CHAT MODE ══╗\n" +
-    "Kamu   : @" + APP.user.username + "\n" +
-    "Target : @" + target + "\n" +
-    "Room   : " + roomId + "\n\n" +
-    "Ketik 'back' untuk balik.", "success");
-
+    "╔══ CHAT MODE ══╗\nKamu   : @" + APP.user.username + "\nTarget : @" + target + "\nRoom   : " + roomId + "\n\nKetik 'back' untuk balik.", "success");
   APP.chatRef = db.ref('chats/' + roomId);
   APP.chatRef.limitToLast(50).on('child_added', function(snap){
     const m = snap.val();
@@ -3232,7 +2864,6 @@ function enterChatMode(target){
     addBubble(m.text, cls, "@" + m.from + " · " + fmtTime(new Date(m.at)));
   });
 }
-
 function exitChatMode(){
   if(APP.chatRef){ APP.chatRef.off(); APP.chatRef = null; }
   const t = APP.chatMode;
@@ -3243,15 +2874,12 @@ function exitChatMode(){
   addBubble("✅ Balik ke terminal. (keluar dari chat @" + t + ")", "success");
   bootSequence();
 }
-
 function sendChatMessage(text){
   const roomId = [APP.user.username, APP.chatMode].sort().join("__");
   db.ref('chats/' + roomId).push({ from: APP.user.username, text: text, at: Date.now() });
 }
 
-/* ══════════════════════════════════════════════
-   REALTIME BROADCAST
-   ══════════════════════════════════════════════ */
+/* ═══ BROADCAST ═══ */
 let lastBroadcastSeen = Date.now();
 db.ref('broadcast').limitToLast(1).on('child_added', function(snap){
   const m = snap.val();
@@ -3264,17 +2892,12 @@ db.ref('broadcast').limitToLast(1).on('child_added', function(snap){
   }
 });
 
-/* ══════════════════════════════════════════════
-   PANIC
-   ══════════════════════════════════════════════ */
 function reloadFromPanic(){
   $('panic').classList.remove('active');
   location.reload();
 }
 
-/* ══════════════════════════════════════════════
-   AUTO-CREATE ADMIN
-   ══════════════════════════════════════════════ */
+/* ═══ INIT ADMIN ═══ */
 (async function initAdmin(){
   try{
     const snap = await db.ref('users/vardev').once('value');
@@ -3287,10 +2910,7 @@ function reloadFromPanic(){
       console.log("✅ Admin vardev dibuat.");
     }
     const pSnap = await db.ref('settings/prefix').once('value');
-    if(!pSnap.exists()){
-      await db.ref('settings/prefix').set("V");
-    }
-    // Init version webcode
+    if(!pSnap.exists()) await db.ref('settings/prefix').set("V");
     const metaSnap = await db.ref('webcode/meta').once('value');
     const m = metaSnap.val();
     APP.webCodeVersion = m ? Math.max(m.part1At||0, m.part2At||0) : 0;
@@ -3299,21 +2919,19 @@ function reloadFromPanic(){
   }
 })();
 
-/* ══════════════════════════════════════════════
-   FOCUS INPUT
-   ══════════════════════════════════════════════ */
 document.addEventListener('click', function(e){
   if($('app').classList.contains('active')
     && !$('codeModal').classList.contains('active')
     && !$('bulkModal').classList.contains('active')
     && !$('part1Modal').classList.contains('active')
     && !$('part2Modal').classList.contains('active')
+    && !$('fixbugModal').classList.contains('active')
     && !e.target.closest('input,button,textarea,a')){
     inputEl.focus();
   }
 });
 
-console.log("✅ VarCommandTerm v2.0 loaded — " + Object.keys(COMMANDS).length + " built-in + custom + bulk + webcode editor.");
+console.log("✅ VarCommandTerm v2.1 loaded — " + Object.keys(COMMANDS).length + " built-in + fixbug + bulk fix.");
 </script>
 </body>
-         </html>
+   </html>
